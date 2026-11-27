@@ -117,7 +117,7 @@ footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px
 <div class="pbar">
   <div class="inner">
     <div class="pstep" data-step="s1"><div class="pdot">1</div><span class="plabel">准备</span><div class="pline"></div></div>
-    <div class="pstep" data-step="s2"><div class="pdot">2</div><span class="plabel">装技能搭库</span><div class="pline"></div></div>
+    <div class="pstep" data-step="s2"><div class="pdot">2</div><span class="plabel">交给 WorkBuddy</span><div class="pline"></div></div>
     <div class="pstep" data-step="s3"><div class="pdot">3</div><span class="plabel">整理样例资料</span><div class="pline"></div></div>
     <div class="pstep" data-step="s4"><div class="pdot">4</div><span class="plabel">编译画像</span><div class="pline"></div></div>
     <div class="pstep" data-step="s5"><div class="pdot">5</div><span class="plabel">产品推荐</span></div>
@@ -126,11 +126,11 @@ footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px
 <nav>
   <b>步骤：</b>
   <a href="#s1">1 准备</a>
-  <a href="#s2">2 装技能搭库</a>
+  <a href="#s2">2 交给 WorkBuddy</a>
   <a href="#s3">3 整理样例资料</a>
   <a href="#s4">4 编译画像</a>
   <a href="#s5">5 产品推荐</a>
-  <a href="#s7">合规底线</a>
+  <a href="#s7">内部核对</a>
 </nav>
 
 <section id="s1">
@@ -140,15 +140,17 @@ footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px
 </section>
 
 <section id="s2">
-  <h2><span class="n">2</span>自动建目录、装技能、搭库（15 分钟）</h2>
-  <p>一条 prompt 全包：建文件夹、检查并安装技能、搭好知识库。复制发送即可，无需任何额外输入。</p>
-  <div class="phead"><span class="lbl">① 一键建库（复制这一条即可）</span><button class="copy" data-t="p1">复制</button></div>
-  <pre id="p1">请完成以下全部操作，不要让我再做任何手动步骤：
-1. 确定知识库根目录：优先用你"文档"文件夹下的 私行知识库（Windows 通常是 C:\Users\你的用户名\Documents\私行知识库，macOS 通常是 ~/Documents/私行知识库）；如果该位置不可用，就在当前工作空间下建一个 私行知识库 文件夹。不要写死盘符（例如 D:），因为学员电脑不一定有该盘。创建后把当前任务的工作空间设为这个文件夹，并在回复里告诉我它的完整路径——后面我会用"知识库根目录"指代它；
-2. 检查技能 llm-wiki-kit（显示名"LLM Wiki 知识库套件"）是否已安装并启用：已安装但未启用就启用它；未安装就从技能市场按名称 llm-wiki-kit 搜索并安装，装完启用；它实现的是 Karpathy LLM Wiki 模式，是我们要用的知识库技能；若确实搜不到，如实告诉我，不要假装装上了；
-3. 用这个技能在刚才确定的知识库根目录搭建私人银行客户资料知识库：建立 raw/（只读原始资料）和 wiki/（知识页），raw/ 下建"客户微信""行内产品资料""战略与指令""合规规则"四个子文件夹，根目录建 AGENTS.md、index.md、log.md；归档规则和冲突处理规则由技能按默认规范写入 AGENTS.md，不用我自己写；
-4. 建好后告诉我：技能是否安装成功、目录结构、以及下一步该怎么用。</pre>
-  <div class="res"><b>预期结果：</b>技能被安装启用，目录自动生成。结果区出现 <code>AGENTS.md</code>、<code>raw/</code>、<code>wiki/</code> 等文件。如果技能确实搜不到，WorkBuddy 会如实告知。</div>
+  <h2><span class="n">2</span>把资料交给 WorkBuddy</h2>
+  <p>把文件拖进 WorkBuddy 对话，或直接粘贴记录，再发送下面的指令。用课堂样例时，继续在同一对话完成下一步。</p>
+  <div class="phead"><span class="lbl">让 WorkBuddy 整理资料</span><button class="copy" data-t="p1">复制</button></div>
+  <details><summary>查看提示词</summary>
+  <pre id="p1">请用已有的 llm-wiki-kit 整理我交给你的文件和记录。
+1. 优先沿用当前已选的知识库。若当前工作空间还没有知识库，就在可写目录准备「私行知识库」，后续用「知识库根目录」指代同一个目录。技能不可用或需要授权时，告诉我下一步该确认什么。
+2. 按材料分类归档。raw/ 放原始材料，其中「客户微信」放对话记录，「行内产品资料」放说明书等产品资料，「战略与指令」放内部要求，「合规规则」放供内部核对的参考资料，不发给客户。wiki/ 放整理后的客户画像和产品页。
+3. 建立或沿用 AGENTS.md 中的整理规则，维护 index.md 和 log.md。保留原件，记录出处，信息冲突或缺失就标明。暂时没有材料时，先准备好知识库，等我交给你材料。
+完成后用几句话告诉我收到了哪些材料、整理好了什么、还有什么需要我确认。</pre>
+  </details>
+  <div class="res">看 WorkBuddy 的回复，核对它收到了什么、整理好了什么、还缺什么。</div>
 </section>
 
 <section id="s3">
@@ -356,18 +358,19 @@ https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html
 
 【第二步：营销专家话术】
 在第一步结果基础上，以营销专家身份，为王先生写一段微信话术：
-1. 只用第一步确认的候选产品；
-2. 专业、克制，像一对一的客户经理，不要推销感；
-3. 先回应他关心的"利率下行、到期接续"，再自然引出产品；
-4. 收益只讲客观要素——期限和官网公布的年化区间，用"有下限保底"的说法，不要写"有下限有上限""收益浮动"这类表述；
+1. 只用第一步确认的候选产品。缺关键信息或没有合适候选时，先追问；
+2. 用一对一沟通的口气。有我给的消息样例时，仿照我的称呼和表达方式；
+3. 先回应客户关心的到期接续和用款安排，再讲与这笔钱有关的条件；
+4. 用日常说法讲清客户需要知道的产品条件和风险，例如能否提前取用、收益按什么条件确定。产品事实以已核对的正式资料为依据；
 5. 只写已经确认或已经做到的事，不要写"我没动XX""我另外整理XX""我先查一下再回复您"这类还没做的动作；
-6. 话术里不要出现风险提示、免责声明、"不承诺保本保收益""以最新公告为准"这类字样；
+6. 合规规则只作为经理内部核对的参考。内部文件、核对清单和审阅意见不发给客户。客户草稿围绕对方的问题来写，用自然的说法交代相关条件；
 7. 200 字以内，结尾留一个开放式问题。</pre>
-  <div class="res"><b>话术示例（需人工审核）：</b><br>王先生您好，您提到利率还在降、那笔 500 万的乾元-私享 12 月中旬到期——我按您说的稳健、半年以内，先给您看建行"利得盈"私行优享最新一期：118 天，官网公告年化 0.65%—2.05%，收益有下限保底。您看这期期限，跟孩子这笔钱的安排对得上吗？</div>
+  <div class="res"><b>话术示例（需人工审核）</b><br>王先生您好，您那笔钱 12 月中旬到期，您也提到想先给孩子留一部分。孩子这笔钱最早大概什么时候要用？我好按这个时间帮您比较能接上的安排。</div>
 </section>
 
 <section id="s7">
-  <h2>三条合规底线</h2>
+  <h2>经理内部核对</h2>
+  <p>合规规则和核对记录只作为内部参考，不发给客户。跟客户沟通时，直接回应对方关心的事，把必要的产品条件和风险说清楚。</p>
   <div class="note red"><b>1 · 脱敏</b>真实客户姓名、账号、金额必须脱敏后入库；客户数据只存本地，不上传、不同步公共盘。</div>
   <div class="note red"><b>2 · 人工审核</b>AI 生成的话术、推荐必须逐句审核后才能发送。微信自动归档只读不发送。AI 只起草，不对外沟通。</div>
   <div class="note red"><b>3 · 不承诺不夸大</b>不得承诺保本保收益；收益率以建行官方最新公告为准；风险不匹配一票否决。</div>
@@ -774,7 +777,15 @@ https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html
     var ok=false;try{ok=document.execCommand('copy')}catch(e){ok=false}
     document.body.removeChild(a);
     if(ok){flash(btn,'已复制',true)}
-    else{var pre=document.getElementById(btn.getAttribute('data-t'));if(pre)selectPre(pre);flash(btn,'已选中·按Ctrl+C',false)}
+    else{
+      var pre=document.getElementById(btn.getAttribute('data-t'));
+      if(pre){
+        var details=pre.closest('details');
+        if(details)details.open=true;
+        selectPre(pre);
+      }
+      flash(btn,'已选中·按Ctrl+C',false);
+    }
   }
   function doCopy(btn,text){
     if(navigator.clipboard&&navigator.clipboard.writeText){
@@ -894,14 +905,15 @@ showLinkedSection();
     permission: ['权限确认|权限弹窗|只读权限', '决定任务可以访问哪些文件或执行哪些动作。WorkBuddy 在默认权限下可能对敏感操作或工作空间之外的动作发出确认提示。看清对象和动作再选，例如这次只需要读指定目录。'],
     skill: ['Skill|技能', 'WorkBuddy 能重复调用的做事方法，可以把说明、参考资料或辅助脚本放在一起。相同步骤频繁重做时最有用，例如每次整理新聊天都保留原文、标注出处并更新日志。', 'skill'],
     market: ['技能市场|安装确认', 'WorkBuddy 里查找、查看和安装 Skill 的入口。已有可复用技能时，先在市场看名称、作者、用法和权限，再确认安装。可在“已安装”里核对是否成功。', 'skill'],
-    kit: ['llm-wiki-kit', '手册里要查找的 LLM Wiki 整理 Skill，目标是按同一规则归档原文、维护知识页、索引和日志。适合有新资料时重复整理。先核对在自己的 WorkBuddy 中能否安装和启用。', 'skill'],
-    llmWiki: ['LLM Wiki', '一种让 AI 持续维护知识的组织方法，把原文、整理后的知识页和工作规则分开。适合要长期补充、反复回查的资料，例如新到一条对话时更新客户页，同时留好原话出处。'],
-    library: ['资料知识库|知识库', '集中保存原始材料、整理结果和出处的地方。适合同一批资料会多次使用的任务，例如平时积累对话、会前查客户需求、会后补充新变化。'],
-    wikiPage: ['Wiki画像|Wiki|wiki/|知识页', '整理完的知识页及其文件夹。这套练习按客户或产品分开写，查资料时先看对应页，再顺着出处核对原文。'],
-    raw: ['raw/', '存原始材料的文件夹，例如聊天 TXT 和官网下载的说明书。第一次入库和后来补资料都先保存原文，改写后的摘要放在知识页里，方便回查。'],
-    rules: ['AGENTS.md', '这套课堂知识库写给 Agent 的工作规则。新建库时写好，整理资料前按它操作，例如保留原件、给每条事实标出处、信息冲突时先待核。'],
-    index: ['index.md|索引', '知识库的导航页，告诉你有哪些客户页和产品页、去哪里找。新增页面后补一条链接，下次经理或 AI 都能从目录快速找到对应条目。'],
-    log: ['log.md|日志', '资料整理的流水账。每次运行后记录何时用了哪些来源、更新了哪些页面、还有什么待核。课堂上用它判断一次增量更新有没有真正完成。'],
+    kit: ['llm-wiki-kit', 'WorkBuddy 用来整理你交给它的文件和记录的技能。', 'skill'],
+    llmWiki: ['LLM Wiki', '把文件或记录交给 WorkBuddy，它负责保存原文和更新知识页。'],
+    library: ['资料知识库|知识库', '集中放原始资料、整理结果和出处。'],
+    wikiPage: ['Wiki画像|Wiki|wiki/|知识页', '放 WorkBuddy 整理后的客户画像和产品页。'],
+    raw: ['raw/', '放对话记录、产品说明书和内部参考资料等原件。'],
+    rules: ['AGENTS.md', '放 WorkBuddy 整理资料时用的规则。'],
+    index: ['index.md|索引', '放客户页和产品页的目录。'],
+    log: ['log.md|日志', '记下 WorkBuddy 本次整理和更新了什么。'],
+    complianceReference: ['合规规则', '只供经理内部核对，不发给客户。客户消息用平时的话讲清对方关心的实际条件。'],
     txt: ['TXT', '只保存文字的文件，用记事本等编辑器就能打开。适合保留聊天原句、日期和说话人，例如为每位虚构客户各存一份对话。'],
     pdf: ['PDF', '能保留正式文件的版式和页码，适合用作条款原件。核对期限或收益条件时，一并记下 PDF 的标题、版本和具体页码。'],
     zip: ['ZIP', '把多个文件放在一起传输的压缩包。课堂可以下载完整样例包，解压后分别查看每位客户的 TXT。'],
