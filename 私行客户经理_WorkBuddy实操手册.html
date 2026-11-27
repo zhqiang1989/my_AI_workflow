@@ -75,15 +75,6 @@ footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px
 .hidden-pre{display:none}
 
 /* 客户名询问弹窗 */
-.modal-mask{position:fixed;inset:0;background:rgba(20,40,70,.45);display:none;align-items:center;justify-content:center;z-index:200}
-.modal-mask.show{display:flex}
-.modal-box{background:#fff;border-radius:12px;padding:24px 28px;max-width:460px;width:90%;box-shadow:0 14px 44px rgba(0,0,0,.22)}
-.modal-box h3{margin:0 0 8px;font-size:17px;color:var(--dark)}
-.modal-box p{font-size:13px;color:var(--ink2);margin:0 0 14px;line-height:1.6}
-.modal-box input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:6px;font-size:14px;box-sizing:border-box;font-family:inherit}
-.modal-btns{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
-.modal-btns button{padding:8px 16px;border-radius:6px;border:1px solid var(--line);cursor:pointer;font-size:14px;font-family:inherit;background:#fff;color:var(--ink)}
-.modal-btns .ok{background:var(--blue);color:#fff;border-color:var(--blue);font-weight:600}
 
 /* Inline glossary */
 .teach-keyword{border-radius:3px;text-decoration:underline dotted;text-underline-offset:.2em;cursor:help}
@@ -103,7 +94,7 @@ footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px
 <header>
   <div class="eyebrow">中国建设银行 · 私人银行客户经理培训</div>
   <h1>WorkBuddy + LLM Wiki 基础实操手册</h1>
-  <p>用课堂样例跟做：整理资料 → 生成客户画像 → 准备沟通草稿</p>
+  <p>用课堂样例练习，或另开工作空间整理微信和产品资料</p>
 </header>
 
 <div class="wrap">
@@ -135,7 +126,7 @@ footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px
 
 <section id="s1">
   <h2><span class="n">1</span>准备（2 分钟）</h2>
-  <div class="note blue"><b>从课堂样例开始</b>登录 WorkBuddy 桌面客户端，按本页次序复制提示词。第 3 步带有虚构客户对话，直接用它练习。</div>
+  <div class="note blue"><b>从课堂样例开始</b>登录 WorkBuddy 桌面客户端，新建任务并按本页次序复制提示词。本页用「课堂示例知识库」，第 3 步自带虚构客户对话。</div>
   <div class="note red"><b>数据安全</b>本手册客户资料全部为虚构脱敏示例。真实使用时，客户姓名、账号、资产金额必须脱敏后才能入库。</div>
 </section>
 
@@ -145,7 +136,7 @@ footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px
   <div class="phead"><span class="lbl">让 WorkBuddy 整理资料</span><button class="copy" data-t="p1">复制</button></div>
   <details><summary>查看提示词</summary>
   <pre id="p1">请用已有的 llm-wiki-kit 整理我交给你的文件和记录。
-1. 优先沿用当前已选的知识库。若当前工作空间还没有知识库，就在可写目录准备「私行知识库」，后续用「知识库根目录」指代同一个目录。技能不可用或需要授权时，告诉我下一步该确认什么。
+1. 这是课堂任务。只使用独立的「课堂示例知识库」。还没有就新建并报出完整路径，后续用「知识库根目录」指代它。若当前空间用于真实客户、材料来源不明、技能不可用或需要授权，先停下告诉我该确认什么。
 2. 按材料分类归档。raw/ 放原始材料，其中「客户微信」放对话记录，「行内产品资料」放说明书等产品资料，「战略与指令」放内部要求，「合规规则」放供内部核对的参考资料，不发给客户。wiki/ 放整理后的客户画像和产品页。
 3. 建立或沿用 AGENTS.md 中的整理规则，维护 index.md 和 log.md。保留原件，记录出处，信息冲突或缺失就标明。暂时没有材料时，先准备好知识库，等我交给你材料。
 完成后用几句话告诉我收到了哪些材料、整理好了什么、还有什么需要我确认。</pre>
@@ -160,7 +151,7 @@ footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px
   <h3>① 导入课堂样例</h3>
   <div class="phead"><span class="lbl">自动造样例数据并归档（复制）</span><button class="copy" data-t="p0">复制</button></div>
   <div class="note blue" style="margin-top:0;border-radius:0 0 8px 8px"><b>内容已内置</b>三段客户的完整对话（约 5000 字）已写进这条指令，页面上不展开显示。点右上角"复制"即可把全文连同归档指令一起复制，直接发给 WorkBuddy 自动建文件、建画像。</div>
-  <pre id="p0" class="hidden-pre">在 知识库根目录 下的 raw\客户微信\ 中创建以下三个文件。文件内容为脱敏教学样例，直接按下面给出的全文写入，不要读取或修改真实微信数据。
+  <pre id="p0" class="hidden-pre">只写入「课堂示例知识库」。未确认目录时先问我，不要写入业务库。在该目录下的 raw\客户微信\ 中创建以下三个文件。文件内容为脱敏教学样例，直接按下面给出的全文写入，不要读取或修改真实微信数据。
 
 【客户微信_王先生.txt】
 # 客户微信_王先生（化名）· 私行 C3 级 · 2026-11
@@ -318,7 +309,8 @@ footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px
     <tr><td>金融超市（建行金、代理保险入口）</td><td><a href="https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html" target="_blank">官网金融超市</a></td></tr>
   </table>
   <div class="phead"><span class="lbl">自动抓取产品信息（复制）</span><button class="copy" data-t="p2b">复制</button></div>
-  <pre id="p2b">请打开以下建行官网公开链接，读取页面上的产品名称、期限、风险等级、收益率区间等信息：
+  <pre id="p2b">只在已确认的「课堂示例知识库」处理本次资料。未确认目录时先问我。
+请打开以下建行官网公开链接，读取页面上的产品名称、期限、风险等级、收益率区间等信息：
 https://tool1.ccb.com/chn/finance/deposit_news/list_3776.shtml
 https://tool1.ccb.com/chn/2026-11/24/article_2026112418081385687.shtml
 https://ccb.com/chn/2022-09/17/article_2022091713571324945.shtml
@@ -331,7 +323,7 @@ https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html
 <section id="s4">
   <h2><span class="n">4</span>自动编译 + 生成画像（15 分钟）</h2>
   <div class="phead"><span class="lbl">一键编译并生成画像（复制）</span><button class="copy" data-t="p3">复制</button></div>
-  <pre id="p3">用 llm-wiki-kit 技能处理 raw/ 里的新资料：
+  <pre id="p3">只在已确认的「课堂示例知识库」使用 llm-wiki-kit 技能处理 raw/ 里的新资料。未确认目录时先问我。
 1. 把客户微信和产品资料编译进 wiki/，为每位客户建画像页、为每个产品建产品页；
 2. 基于这些资料，为王先生、李女士、张总各生成一份画像表格，字段：客户称谓（脱敏）、风险偏好与流动性、家庭/传承需求、沟通偏好、近期诉求、信息来源；
 3. 只写资料里明确提到的，没有的写"资料未提及"，不要编造；
@@ -347,7 +339,7 @@ https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html
   <h2><span class="n">5</span>自动调用专家做产品推荐（15 分钟）</h2>
   <p>一条 prompt 自动依次调用金融专家和营销专家，<b>不用你手动切换专家</b>。最后仍由你人工审核话术。</p>
   <div class="phead"><span class="lbl">金融专家 + 营销专家一次跑完（复制）</span><button class="copy" data-t="p4">复制</button></div>
-  <pre id="p4">请依次完成以下两步，不要让我手动切换专家：
+  <pre id="p4">只读取已确认的「课堂示例知识库」。未确认目录时先问我。请依次完成以下两步，不要让我手动切换专家：
 
 【第一步：金融专家产品匹配】
 以金融专家身份，基于 wiki/ 里的客户画像和产品资料，为王先生做产品匹配：
@@ -380,51 +372,70 @@ https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html
 </div>
 
 <div id="panel-automation" class="panel" role="tabpanel" aria-labelledby="tab-automation">
-<div class="note blue">沿用示例工作流里建好的知识库目录。打开并登录电脑微信，核对联系人后先试一次归档，再设置定时任务。</div>
+<div class="note blue"><b>单独开一个 WorkBuddy 任务</b>本页用「私行工作知识库」，只收你确认可交给 WorkBuddy 的微信记录和产品资料。课堂示例知识库留在示例页使用。</div>
+<nav aria-label="微信与产品资料实操步骤">
+  <a href="#wechat-prepare">1 准备资料</a>
+  <a href="#wechat-archive">2 建知识库</a>
+  <a href="#wechat-draft">3 核对并起草</a>
+  <a href="#s6">4 可选定时</a>
+</nav>
+
+<section id="wechat-prepare">
+  <h2><span class="n">1</span>用电脑微信取记录，带上产品资料</h2>
+  <ol>
+    <li>打开并登录电脑微信，按备注名找到客户。打开对话核对人和时间范围。同名或群聊先确认，第一次只选一位客户的一段相关对话。</li>
+    <li>在 WorkBuddy 新建本地任务。把获准使用、已脱敏的记录粘进去，或拖入记录文件。若所选记录允许直接转发，且客户端有入口，也可在微信的「转发到其他应用」选「腾讯WorkBuddy」，核对输入框的转发内容卡片。</li>
+    <li>在同一任务拖入可使用的产品说明书、公告或行内产品资料，也可贴产品官网链接。可以用客户代号标记记录，不用在本手册填客户姓名。</li>
+  </ol>
+  <p><a href="https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Task-Bar" target="_blank" rel="noopener">WorkBuddy 官方操作说明</a></p>
+</section>
+
 <section id="wechat-archive">
-  <h2>连接电脑微信并归档</h2>
-  <div class="phead"><span class="lbl">微信归档指令（复制）</span><button class="copy" data-t="p2" data-ask="clients">复制</button></div>
-  <pre id="p2">用电脑操作能力帮我归档微信聊天记录：
+  <h2><span class="n">2</span>把微信记录和产品资料一起交给 WorkBuddy</h2>
+  <p>资料放进对话后，发送下面的提示词。WorkBuddy 会准备知识库、整理文件并告诉你结果。</p>
+  <div class="phead"><span class="lbl">建立微信与产品资料知识库</span><button class="copy" data-t="p2">复制</button></div>
+  <details><summary>查看提示词</summary>
+  <pre id="p2">请用 llm-wiki-kit 把我在这次任务交给你的微信记录和产品资料整理进独立的「私行工作知识库」。
+1. 在我允许写入的位置新建这个知识库，或沿用我已确认的同名业务库。若位置不清楚、指向课堂示例知识库，或库里已有来源不明的资料，先停下让我确认。不要导入课堂资料或其他任务的历史附件。技能不可用或工作空间需要授权时，告诉我怎么在 WorkBuddy 里确认。
+2. 只处理我本次提交或明确指定的记录。按客户代号分开，保留日期、说话人和与业务有关的脱敏原句。客户归属、记录范围或脱敏情况不明确时先问我。保存获准的原始输入，不覆盖旧记录，重叠的消息只记一次。
+3. 归档我给的产品文件或官方链接，记录文件名或链接、版本与日期。按资料提取期限、风险等级、取用条件等。未披露、过期或有冲突的要素标为待确认，不当作当前条款。
+4. 分别更新客户页和产品页。客户明确说过的话、你的推断、待确认的问题分开写，保留出处。更新索引和更新日志，并在库内建「待整理」文件夹，供我以后放获准使用的新记录或产品文件。
+5. 回报完整路径、收到的材料、更新的页面和需要我确认的事项。缺记录或产品文件就直接列出缺项。全程只整理资料，不向客户发送消息。</pre>
+  </details>
+  <div class="res"><b>核对结果</b>应看到客户页和产品页各至少一条可回查的出处。以后有新记录或产品文件，可以在同一任务交给 WorkBuddy，再用这条指令更新。</div>
+</section>
 
-【第一步：确认客户名单，仅在必要时询问】检查下面第二步里的客户名是否还是样例（王先生、李女士、张总）。若还是样例，说明尚未填入你的真实客户，请先问我："你微信里需要归档的客户分别叫什么名字？"等我回答后，用真实名字替换样例名再执行；若我在课堂上回答"用样例"，就按样例执行。若客户名已经是我的真实姓名（不是样例），则跳过询问，直接执行。
-
-【第二步：归档】
-1. 打开桌面已登录的微信，找到客户王先生、李女士、张总（以我实际给出的名字为准）的聊天窗口；
-2. 只读最近 30 天聊天记录，不要发送任何消息、不要改动微信里的任何数据；
-3. 客户姓名用化名、金额和账号脱敏，整理成纯文本；
-4. 分别保存到 知识库根目录\raw\客户微信\客户微信_<客户名>.txt 文件（每个客户一个文件）；
-5. 保存后用 llm-wiki-kit 技能把这些文件编译进 wiki/，并告诉我归档了哪些客户。
-如果找不到某位客户或无法登录微信，跳过该客户并如实告诉我，不要中断。</pre>
-  <div class="note amber"><b>如实说明</b>WorkBuddy 国内版没有个人微信官方连接器，个人微信只能走电脑操作；企业微信有官方连接器，更稳定。电脑操作全程只读，不发送任何消息。</div>
-
+<section id="wechat-draft">
+  <h2><span class="n">3</span>核对客户需求，准备沟通草稿</h2>
+  <p>在同一个任务告诉 WorkBuddy 客户代号和这次要解决的问题。想让草稿像你平时说话，可以再给一条你自己写的脱敏消息。</p>
+  <div class="phead"><span class="lbl">查知识库并起草微信消息</span><button class="copy" data-t="p-wechat-draft">复制</button></div>
+  <details><summary>查看提示词</summary>
+  <pre id="p-wechat-draft">只查这次任务确认的「私行工作知识库」。根据我给的客户代号和问题准备一条微信草稿。客户代号或问题不清楚时先问我。
+1. 先列出客户明确表达的需求和出处。用已核对的产品资料检查风险测评、期限和取用条件。资料过期、测评未知或没有合适产品时，列出需要我确认的事项，草稿先追问，不推荐产品。
+2. 仿照我平时的口气、称呼和语言风格写。我给了消息就参考它的表达方式。用自然的话回应客户关心的事，涉及产品时讲清必要条件和风险。合规规则与核对记录仅供我内部参考，不写进客户草稿。
+3. 把供我核对的依据和可编辑的微信草稿分开列出。只起草，由我审核和发送。</pre>
+  </details>
 </section>
 
 <section id="s6">
-  <h2><span class="n">6</span>自动创建并验证定时任务（10 分钟）</h2>
-  <p>把下面的 prompt 复制发送，WorkBuddy 会<b>自己创建定时任务、自己立即跑一次验证</b>——你不用去"定时任务"页面手动新建、设时间、选目录、点立即执行。</p>
-  <div class="phead"><span class="lbl">自动创建定时任务 + 立即验证（复制）</span><button class="copy" data-t="p6" data-ask="clients">复制</button></div>
-  <pre id="p6">请帮我自动创建并验证一个定时任务，不要让我手动点击任何界面：
-
-【第一步：确认客户名单，与前面归档保持一致】先问我："前面归档时你用的是哪些客户？请再确认一次需要每日跟进的客户名单（多个用逗号隔开）。"等我回答后，用我确认的名字替换下面任务内容里的客户名。若我回答"用样例"，就沿用 王先生、李女士、张总。
-
-【第二步：创建并验证定时任务】
-1. 创建一个定时任务：名称"每日私行资料入库与画像更新"，执行频率每天 08:30，工作目录 知识库根目录，任务指令为下面【任务内容】的全部文字（客户名已按我确认的替换）；
-2. 创建后立即手动执行一次，验证是否能正常归档和编译，并把执行结果告诉我；
-3. 确认无误后保持任务启用状态。
-
-【任务内容】
-每天执行两步：
-1. 用电脑操作能力读取桌面微信指定客户（王先生、李女士、张总，以我确认的名字为准）最近 1 天的新消息，脱敏后保存到 知识库根目录\raw\客户微信\ 下的 .txt 文件（每个客户一个），只读不发送；读不到就跳过，不要报错中断；
-2. 用 llm-wiki-kit 技能把 raw/ 的新文件编译进 wiki/：新事实直接补充并记来源日期；产品要素变更自动保留新旧两版、记入 log.md，确认前不用于推荐；更新 index.md 和 log.md；
-3. 生成简短日报：今天新增了哪些资料、更新了哪些页面、有哪些待确认事项；
-4. raw/ 没有新文件时，什么都不用做。</pre>
-  <div class="res"><b>预期结果：</b>WorkBuddy 自动建好定时任务并当场跑一次给你看。之后每天早上自动归档微信、更新画像、生成待办清单。你只需看一眼"待确认事项"。</div>
+  <h2><span class="n">4</span>可选：定时整理新交来的资料</h2>
+  <p>前面核对通过后，再到 WorkBuddy 左侧打开「定时任务」。新建本地定时任务，在「选择分组」中选刚才的「私行工作知识库」。如果列表里没有，先新建分组，用「关联电脑上的文件夹」选第 2 步返回的路径。</p>
+  <p>设定时间，添加 llm-wiki-kit 技能并粘贴下面的指令。平时把可使用的新记录或产品文件放到这个库的「待整理」文件夹。</p>
+  <div class="phead"><span class="lbl">定时更新客户和产品资料</span><button class="copy" data-t="p6">复制</button></div>
+  <details><summary>查看提示词</summary>
+  <pre id="p6">在本地定时任务选定的工作空间运行。先检查它是「私行工作知识库」，且能找到该库的索引、更新日志和「待整理」文件夹。若位置不符、技能不可用或权限不足，请在运行记录说明并停止，不去其他目录找替代资料。
+1. 用 llm-wiki-kit 只处理「待整理」里尚未入库、客户归属和来源明确的文件。分别归档微信记录和产品资料，保留原始输入、出处与日期，重复内容不再次写入。
+2. 更新客户页、产品页和索引。完成后在更新日志登记已处理的文件，供下次运行核对。产品条款有新版或冲突时保留版本，标为待确认。记录归属不清、敏感信息未脱敏或文件读取失败时，留下原因供我处理，别标为已处理。
+3. 回报新增资料、更新页面和待确认事项。没有新文件就报告「无新增」，不能读取时报告「读取失败」。这个任务只整理已交来的文件，不打开微信、不发送消息。</pre>
+  </details>
+  <div class="res"><b>先试跑一次</b>放一份新资料，保存定时任务后先暂停，点「立即运行」。在运行记录核对资料来源、工作空间和更新结果。确认后再开启，并核对下次执行时间。本地任务运行时保持电脑和 WorkBuddy 可用。</div>
+  <p><a href="https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Automation-Guide" target="_blank" rel="noopener">WorkBuddy 官方定时任务说明</a></p>
 </section>
 
 </div>
 
 <div id="panel-chat" class="panel" role="tabpanel" aria-labelledby="tab-chat">
-  <div class="note blue"><b>这段怎么用</b>点顶部蓝色按钮 <b>📋 复制全部三段对话</b>，会一次性复制「三段对话全文 + 录入 LLM Wiki 的指令」，直接粘给 WorkBuddy 就能自动归档、建画像、一键处理；也可点每段右上角单独复制某一段。</div>
+  <div class="note blue"><b>只用于课堂示例知识库</b>可一次复制三段对话及录入指令，交给 WorkBuddy 整理。也可以单独复制其中一段。</div>
   <button class="copy" data-t="w_all" id="copyallBtn" data-label="📋 复制全部三段对话" style="background:var(--blue);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:600;cursor:pointer;margin:4px 0 16px">📋 复制全部三段对话</button>
   <pre id="w_all" class="hidden-pre"># 客户微信_王先生（化名）· 私行 C3 级 · 2026-11
 
@@ -578,7 +589,7 @@ https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html
 
 【请把上面的对话录入 LLM Wiki 知识库（复制本段即可一键处理）】
 
-请用 llm-wiki-kit 技能，把上面三段客户微信对话归档并编译进知识库：
+请用 llm-wiki-kit 技能，把上面三段对话归档并编译进独立的「课堂示例知识库」。若当前目录含有真实客户资料或用途不明，先停下让我确认。
 1. 在 知识库根目录 下的 raw\客户微信\ 中，把三位客户的对话分别存为 客户微信_王先生.txt、客户微信_李女士.txt、客户微信_张总.txt（每位客户一个文件，内容就是上面各自的对话全文，含档案卡）。
 2. 这些是脱敏教学样例，不要读取或修改真实微信数据。
 3. 用技能把这三个文件编译进 wiki/：为每位客户建画像页，提炼私行等级、AUM、风险测评与有效期、家庭与职业背景、产品需求与沟通偏好；每条事实标注来源文件和日期；更新 index.md 和 log.md。
@@ -754,18 +765,6 @@ https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html
 </div>
 <footer>建行私行客户经理培训 · 基础实操手册　|　客户数据为虚构教学示例，产品信息来自建行公开渠道，不构成投资建议</footer>
 
-<div id="askModal" class="modal-mask">
-  <div class="modal-box">
-    <h3 id="askTitle">填写你微信里的客户名字</h3>
-    <p id="askDesc">学员没有样例里的这些客户。请输入<b>你自己微信里真实的客户名字</b>（多个用逗号隔开），复制时会自动写进指令——agent 收到后就会按你填的名字去归档，不会再拿样例名来找。</p>
-    <input id="askInput" type="text" value="王先生,李女士,张总" placeholder="例如：王先生,李女士,张总">
-    <div class="modal-btns">
-      <button id="askCancel">取消</button>
-      <button id="askOk" class="ok">确定并复制</button>
-    </div>
-  </div>
-</div>
-
 <script>
 (function(){
   function flash(btn,text,ok){if(!btn.dataset.label)btn.dataset.label=btn.textContent;btn.textContent=text;btn.classList.toggle('done',!!ok);setTimeout(function(){btn.textContent=btn.dataset.label;btn.classList.remove('done')},1800)}
@@ -792,53 +791,12 @@ https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html
       navigator.clipboard.writeText(text).then(function(){flash(btn,'已复制',true)},function(){legacyCopy(text,btn)});
     }else{legacyCopy(text,btn)}
   }
-  var pendingBtn=null;
-  var modal=document.getElementById('askModal'),askInput=document.getElementById('askInput');
   document.querySelectorAll('.copy').forEach(function(btn){
     btn.addEventListener('click',function(){
       var el=document.getElementById(btn.getAttribute('data-t'));if(!el)return;
-      if(btn.getAttribute('data-ask')==='clients'){
-        pendingBtn=btn;
-        var isP6=btn.getAttribute('data-t')==='p6';
-        var title=document.getElementById('askTitle'),desc=document.getElementById('askDesc');
-        if(title)title.textContent=isP6?'确认每日跟进的客户名单':'填写你微信里的客户名字';
-        if(desc)desc.innerHTML=isP6
-          ?'请<b>再确认一次</b>与前面归档时一致的客户名单（多个用逗号隔开），定时任务会按这些客户每日跟进。'
-          :'学员没有样例里的这些客户。请输入<b>你自己微信里真实的客户名字</b>（多个用逗号隔开），复制时会自动写进指令——agent 收到后就会按你填的名字去归档，不会再拿样例名来找。';
-        if(modal){modal.classList.add('show');askInput.focus();askInput.select()}
-        return;
-      }
       doCopy(btn,el.textContent);
     });
   });
-  // 询问弹窗：把学员输入的客户名替换进 p2 指令
-  var askOk=document.getElementById('askOk'),askCancel=document.getElementById('askCancel');
-  if(askOk)askOk.addEventListener('click',function(){
-    modal.classList.remove('show');
-    var raw=askInput.value.trim()||'王先生,李女士,张总';
-    var names=raw.split(/[,，、\s]+/).filter(function(x){return x.length>0});
-    var el=document.getElementById(pendingBtn.getAttribute('data-t'));
-    var text=el.textContent;
-    var nameStr=names.join('、')||'王先生、李女士、张总';
-    var which=pendingBtn.getAttribute('data-t');
-    if(which==='p2'){
-      // p2 归档：标记名单已填好，替换客户名与文件名
-      text=text.replace(/【第一步：确认客户名单，仅在必要时询问】[\s\S]*?(?=【第二步：归档】)/,
-        '【第一步：客户名单】已在复制时填好，客户为：'+nameStr+'。直接执行第二步，不要再次询问。\n\n');
-      text=text.replace('客户王先生、李女士、张总（以我实际给出的名字为准）','客户'+nameStr);
-    }else if(which==='p6'){
-      // p6 定时任务：标记名单已确认，替换客户名
-      text=text.replace(/【第一步：确认客户名单，与前面归档保持一致】[\s\S]*?(?=【第二步：创建并验证定时任务】)/,
-        '【第一步：客户名单】已与学员确认，客户为：'+nameStr+'。直接执行第二步，不要再次询问。\n\n');
-      text=text.replace('客户（王先生、李女士、张总，以我确认的名字为准）','客户（'+nameStr+'）');
-    }
-    // 通用替换文件名占位符
-    text=text.replace('客户微信_<客户名>.txt','客户微信_'+(names[0]||'王先生')+'.txt');
-    text=text.replace('客户微信_王先生.txt','客户微信_'+(names[0]||'王先生')+'.txt');
-    doCopy(pendingBtn,text);
-  });
-  if(askCancel)askCancel.addEventListener('click',function(){modal.classList.remove('show')});
-  if(modal)modal.addEventListener('click',function(e){if(e.target===modal)modal.classList.remove('show')});
 })();
 (function(){
   var steps=[].slice.call(document.querySelectorAll('.pstep'));
@@ -899,9 +857,9 @@ showLinkedSection();
   const glossary = {
     agent: ['Agent', '能按目标拆步骤、读资料和使用可用工具的 AI 助手。适合把几步连起来做，例如读三份课堂对话、分别保存、再给出更新清单。交回的文件和记录显示每一步实际做到哪。'],
     prompt: ['提示词|Prompt', '给 AI 的任务说明。写清它能读哪些材料、需要完成什么、交回什么。这里复制的提示词相当于一张任务单，例如让 AI 读取样例，按客户分别保存并报出文件名。'],
-    context: ['本轮客户|本次目录|本轮名单', '指这次任务明确选中的客户和文件夹。换客户或新开对话时重新说清范围，例如这轮只整理李女士的对话，归档到刚才确认的知识库目录。'],
-    workspace: ['工作空间|工作区', 'WorkBuddy 做本地任务时使用的文件夹起点。适合把同一个项目的原文、知识页和产物放在一起。例如课堂选“私行知识库”，好找到本轮保存的位置。'],
-    root: ['知识库完整路径|知识库根目录|完整路径|绝对路径|完整目录|根目录', '装着整个知识库的文件夹及其完整地址。例如 C:/课堂/私行知识库，里面可以有 raw/ 和 wiki/。新开任务或配置定时前，先核对用的是同一个地址。'],
+    context: ['本轮客户|本次目录|本轮名单', '指这次任务明确选中的客户和文件夹。换客户或新开对话时，重新说清要处理哪位客户的哪些资料、归档到哪里。'],
+    workspace: ['工作空间|工作区|选择分组', 'WorkBuddy 读取和保存本地文件的位置。配置定时任务时，通过分组指向已确认的同一个知识库文件夹。'],
+    root: ['知识库完整路径|知识库根目录|完整路径|绝对路径|完整目录|根目录', '装着整个知识库的文件夹在电脑上的地址。新开任务或配置定时前，可以用它确认选对了位置。'],
     permission: ['权限确认|权限弹窗|只读权限', '决定任务可以访问哪些文件或执行哪些动作。WorkBuddy 在默认权限下可能对敏感操作或工作空间之外的动作发出确认提示。看清对象和动作再选，例如这次只需要读指定目录。'],
     skill: ['Skill|技能', 'WorkBuddy 能重复调用的做事方法，可以把说明、参考资料或辅助脚本放在一起。相同步骤频繁重做时最有用，例如每次整理新聊天都保留原文、标注出处并更新日志。', 'skill'],
     market: ['技能市场|安装确认', 'WorkBuddy 里查找、查看和安装 Skill 的入口。已有可复用技能时，先在市场看名称、作者、用法和权限，再确认安装。可在“已安装”里核对是否成功。', 'skill'],
@@ -919,9 +877,10 @@ showLinkedSection();
     zip: ['ZIP', '把多个文件放在一起传输的压缩包。课堂可以下载完整样例包，解压后分别查看每位客户的 TXT。'],
     markdown: ['客户画像汇总.md', '用 Markdown 保存的客户资料汇总，可用文本编辑器直接打开。整理完资料后用它快速找到某位客户的画像和原文出处。'],
     archive: ['微信归档|归档', '把需要回查的聊天按客户保存，留下消息日期、说话人和原句。会前回顾时可从文件里找，比如上次客户提到何时要用钱。'],
-    desktop: ['电脑操作|桌面微信|电脑微信', '通过电脑界面完成需要打开应用、搜索或点击的动作。这里用于在已登录的桌面微信里定位指定会话，操作前先核对联系人和此次资料范围。课堂主流程可直接用虚构对话。', 'tool'],
+    desktop: ['电脑操作|桌面微信|电脑微信', '在已登录的微信桌面客户端打开要整理的对话，先核对联系人和时间，再挑出本次需要使用的记录。', 'tool'],
     contact: ['备注名|显示名|会话标题', '在电脑微信里定位聊天的线索。备注名是你自己给联系人的称呼，显示名是界面上看到的名字。遇到同名或群聊时，先请经理确认具体会话。'],
-    anonymous: ['匿名ID|匿名编号|匿名称谓', '用 C001 等编号代替姓名，以便把不同客户的原文、画像和结果分开保存。每次引用要沿用同一编号，其他可能识别身份的细节仍需按规则处理。'],
+    anonymous: ['客户代号|匿名ID|匿名编号|匿名称谓', '用固定代号代替姓名，让同一位客户的记录能持续更新，也让不同客户的资料分开保存。'],
+    inbox: ['待整理', '业务知识库里的收件文件夹。把可以交给 WorkBuddy 的新文件放进来，本地定时任务会检查哪些还没入库。'],
     redact: ['脱敏|识别信息', '按批准的规则去除或替换可能识别个人的信息，例如用编号代替姓名、隐藏账号。金额、企业名等信息组合起来也可能识别个人，需一并核对。'],
     readonly: ['只读', '这次只查看和摘取获准的内容。用于从微信归档时，操作限于读取指定会话，聊天消息、联系人和其他资料保留原样。'],
     web: ['网页读取|工具', '能让 AI 动手完成一步的能力，例如打开网页、读文件或保存结果。本课要核产品条件时用网页读取工具寻找官方公告，拿到具体文件后再引用其中的条款。', 'tool'],
@@ -974,7 +933,7 @@ showLinkedSection();
     ownership: ['股权', '持有一家企业的所有权份额。整理客户画像时可用它说明财富来源，例如样例提到客户财富主要来自持有的公司股权。'],
     preIpo: ['Pre-IPO', '企业计划上市前的融资阶段。课堂档案用它描述客户公司的阶段，整理资金需求时可以据此补问企业未来何时需要投入资金。'],
     cashFlow: ['现金流', '一段时间内实际流入和流出的现金。客户有项目付款或家庭支出时，可以把日期和金额列出来，看哪几天必须留足可用资金。'],
-    metal: ['贵金属', '黄金等金属资产。样例里张总问黄金时，可先确认他想了解的是实物、账户还是相关产品，再查对应的说明资料。'],
+    metal: ['贵金属', '黄金等金属资产。客户问黄金时，可先确认他想了解的是实物、账户还是相关产品，再查对应的说明资料。'],
     schedule: ['本地定时任务|定时任务|定时试跑|调度', '在 WorkBuddy 保存提示词和执行时间，让任务到点发起。适合重复整理新增文件这类已有固定步骤的工作，例如每天 08:30 汇总昨天的新资料。本地任务执行时需保持电脑和客户端可用。', 'tool'],
     cloud: ['云端沙箱|云端任务', '任务在远程环境执行，云端定时任务可以在本机离线时触发。适合用云端可访问材料制作简报。要读取电脑微信或本机文件时，用本地方案。', 'tool'],
     connector: ['连接器', '经授权后，让 WorkBuddy 使用另一个应用或资料来源的接口。适合已有可用连接器时直接读资料，例如从已授权的团队文档读取指定内容。', 'tool'],
