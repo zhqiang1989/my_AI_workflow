@@ -138,7 +138,7 @@ footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px
     <div class="pstep" data-step="s2"><div class="pdot">2</div><span class="plabel">交给 WorkBuddy</span><div class="pline"></div></div>
     <div class="pstep" data-step="s3"><div class="pdot">3</div><span class="plabel">整理样例资料</span><div class="pline"></div></div>
     <div class="pstep" data-step="s4"><div class="pdot">4</div><span class="plabel">编译画像</span><div class="pline"></div></div>
-    <div class="pstep" data-step="s5"><div class="pdot">5</div><span class="plabel">产品推荐</span></div>
+    <div class="pstep" data-step="s5"><div class="pdot">5</div><span class="plabel">核对并起草</span></div>
   </div>
 </div>
 <nav>
@@ -147,7 +147,7 @@ footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px
   <a href="#s2">2 交给 WorkBuddy</a>
   <a href="#s3">3 整理样例资料</a>
   <a href="#s4">4 编译画像</a>
-  <a href="#s5">5 产品推荐</a>
+  <a href="#s5">5 核对并起草</a>
   <a href="#s7">内部核对</a>
 </nav>
 
@@ -162,11 +162,11 @@ footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px
   <p>把文件拖进 WorkBuddy 对话，或直接粘贴记录，再发送下面的指令。用课堂样例时，继续在同一对话完成下一步。</p>
   <div class="phead"><span class="lbl">让 WorkBuddy 整理资料</span><button class="copy" data-t="p1">复制</button></div>
   <details><summary>查看提示词</summary>
-  <pre id="p1">请用已有的 llm-wiki-kit 整理我交给你的文件和记录。
-1. 这是课堂任务。只使用独立的「课堂示例知识库」。还没有就新建并报出完整路径，后续用「知识库根目录」指代它。若当前空间用于真实客户、材料来源不明、技能不可用或需要授权，先停下告诉我该确认什么。
-2. 按材料分类归档。raw/ 放原始材料，其中「客户微信」放对话记录，「行内产品资料」放说明书等产品资料，「战略与指令」放内部要求，「合规规则」放供内部核对的参考资料，不发给客户。wiki/ 放整理后的客户画像和产品页。
-3. 建立或沿用 AGENTS.md 中的整理规则，维护 index.md 和 log.md。保留原件，记录出处，信息冲突或缺失就标明。暂时没有材料时，先准备好知识库，等我交给你材料。
-完成后用几句话告诉我收到了哪些材料、整理好了什么、还有什么需要我确认。</pre>
+  <pre id="p1">请在本次 WorkBuddy 任务里准备独立的「课堂示例知识库」。没有就新建，后续步骤继续用同一个位置。当前任务如果用了真实资料，或目录用途不明，先停下让我确认。
+1. 优先用已安装的 llm-wiki（也可能叫 llm-wiki-kit），回报实际用了哪个。两个都没有就用本地文件工具按以下步骤做，不安装新技能。
+2. 建好原件区 raw/ 和整理区 wiki/。聊天和产品原件按类保存，保留出处。合规资料只供经理内部核对，不发给客户。没有资料就先准备空库。
+3. 保存整理规则 AGENTS.md，建立 wiki/index.md 和 wiki/log.md。已有索引和日志就沿用同一套，不重复建。
+完成后告诉我知识库的完整路径、实际用了什么技能或工具、收到了什么和还缺什么。</pre>
   </details>
   <div class="res">看 WorkBuddy 的回复，核对它收到了什么、整理好了什么、还缺什么。</div>
 </section>
@@ -181,9 +181,9 @@ footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px
   <details class="sample-bundle"><summary>查看导入指令</summary>
 <!-- sample-import:start -->
   <pre id="p0">只在独立的「课堂示例知识库」整理本次材料。未确认目录时先问我，不要读取真实微信或写入业务库。
-以下是全部虚构的课堂对话。请按每段开头的文件名分别保存原文，再用 llm-wiki-kit 入库。
-为每位客户建一页，保留消息编号、日期、明确说过的话和待确认信息。
-正式风险测评未提供。更新索引和更新日志，告诉我收到哪几份记录。
+以下是全部虚构的课堂对话。请用上一步实际可用的 LLM Wiki 技能或本地文件工具，按文件名分别保存到 raw/客户微信/。
+保留原文、编号、日期和说话人，每份核对 10 条。本步只归档原文，画像在第 4 步统一生成。
+在现有索引和日志中登记，回报文件位置和条数。正式风险测评未提供。
 
 【客户微信_林黛玉.txt】
 # 林黛玉的微信式课堂对话
@@ -307,60 +307,47 @@ LIT-TSZ-W10　2026-11-26 09:28　小陈
 <!-- sample-import:end -->
   </details>
 
-  <h3>② 自动抓取建行官网公开产品信息</h3>
-  <p>下面是建行官网真实公开链接（2026 年 11 月可访问），WorkBuddy 会自动打开、抓取、整理成文件。</p>
+  <h3>② 核对一份公开产品说明书</h3>
+  <p>用第 174 期做课堂练习。先看公告和对应说明书。公告列表、系列介绍和金融超市可用于找资料。</p>
   <table>
     <tr><th>产品类型</th><th>建行官网公开页面</th></tr>
-    <tr><td>新产品发布公告（含私行优享结构性存款，最新）</td><td><a href="https://tool1.ccb.com/chn/finance/deposit_news/list_3776.shtml" target="_blank">官网公告列表</a></td></tr>
-    <tr><td>"利得盈"结构性存款 2026 年第174期（私行优享）</td><td><a href="https://tool1.ccb.com/chn/2026-11/24/article_2026112418081385687.shtml" target="_blank">官网公告</a></td></tr>
-    <tr><td>"乾元"系列理财产品介绍</td><td><a href="https://ccb.com/chn/2022-09/17/article_2022091713571324945.shtml" target="_blank">官网介绍</a></td></tr>
-    <tr><td>金融超市（建行金、代理保险入口）</td><td><a href="https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html" target="_blank">官网金融超市</a></td></tr>
+    <tr><td>“利得盈”结构性存款 2026 年第 174 期（私行优享）</td><td><a href="https://www.ccb.com/chn/2026-11/24/article_2026112418081385687.shtml" target="_blank" rel="noopener">官网公告</a> · <a href="https://www.ccb.com/chn/html1/finance/26/11/24ldy174.pdf" target="_blank" rel="noopener">产品说明书（PDF）</a></td></tr>
+    <tr><td>选做 · 公开资料入口</td><td><a href="https://wealth.ccb.com/chn/finance/deposit_news/list_3776.shtml" target="_blank" rel="noopener">公告列表</a> · <a href="https://ccb.com/chn/2022-09/17/article_2022091713571324945.shtml" target="_blank" rel="noopener">乾元系列介绍</a> · <a href="https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html" target="_blank" rel="noopener">金融超市</a></td></tr>
   </table>
-  <div class="phead"><span class="lbl">自动抓取产品信息（复制）</span><button class="copy" data-t="p2b">复制</button></div>
+  <div class="phead"><span class="lbl">核对公开产品条款（复制）</span><button class="copy" data-t="p2b">复制</button></div>
   <pre id="p2b">只在已确认的「课堂示例知识库」处理本次资料。未确认目录时先问我。
-请打开以下建行官网公开链接，读取页面上的产品名称、期限、风险等级、收益率区间等信息：
-https://tool1.ccb.com/chn/finance/deposit_news/list_3776.shtml
-https://tool1.ccb.com/chn/2026-11/24/article_2026112418081385687.shtml
-https://ccb.com/chn/2022-09/17/article_2022091713571324945.shtml
-https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html
+先核对建行第 174 期的公告和同一期说明书。已收到完整说明书时直接用附件。
+https://www.ccb.com/chn/2026-11/24/article_2026112418081385687.shtml
+https://www.ccb.com/chn/html1/finance/26/11/24ldy174.pdf
 
-把抓到的信息整理成 知识库根目录\raw\行内产品资料\公开产品资料.md，每条产品保留官网链接和页面日期；页面没有的信息不要编造，写"官网未披露"。保存后用 llm-wiki-kit 技能编译进 wiki/。如果某个链接打不开，跳过并如实告诉我。</pre>
-  <div class="note green"><b>公开资料随便用</b>这些是建行官网公开信息，不涉及保密。学员也可以让自己找任何公开资料扔进 raw/，技能会自动归类入档。真实内部产品清单请替换为本机构版本。</div>
+1. 核对产品代码、风险等级、募集日期、起息与到期、到账、提前取用及收益条件。优先读说明书 PDF 第 4–5 页的本期条款。第 6 页的假设算例不得混入本期字段。
+2. 每个字段附官网链接或 PDF 页码。公告标题只能支持它明确写出的条款。导航页、历史介绍和产品标题不能当作实时在售或可购买的依据。报出核实日期。
+3. 把完整原件存到 raw/行内产品资料/，条款与缺项写入 wiki/公开产品资料.md。下载设 60 秒超时，失败最多换一种方式再试一次。打不开、传输不完整或无法解析都记原因并标「未核实」。只有读完正式原件仍找不到的字段才写「未披露」。先交已核实的内容，继续后续画像。</pre>
+  <div class="note green"><b>网页读不到时</b>可以下载说明书 PDF，拖到同一个 WorkBuddy 对话再发提示词。产品资料缺项时也能先做客户画像。</div>
 </section>
 
 <section id="s4">
   <h2><span class="n">4</span>用微信原话做图文画像（15 分钟）</h2>
+  <p>想用课堂配图，可从<a href="#classroom-portraits">客户对话样例</a>保存人物图并拖进 WorkBuddy。</p>
   <div class="phead"><span class="lbl">编译知识库并做成图文画像（复制）</span><button class="copy" data-t="p3">复制</button></div>
-  <pre id="p3">只在已确认的「课堂示例知识库」使用 llm-wiki-kit 技能处理 raw/ 里的新资料。未确认目录时先问我。
-1. 把微信与产品资料编译进 wiki/，给林黛玉、孙悟空和唐僧各建一页，并保留原文和来源。给产品另外建页。
-2. 每位客户用一句有画面感的话开场，再写「这笔钱」「怎么聊」「还要问」。举一条真实出现在课堂对话里的原话并标编号。把资料中明确说过的事、你的理解和待确认事项分开。性格和对话不能代替正式风险测评。只处理实际收到的样例，没收到的说明缺项。
-3. 有 UI/UX Pro Max Skill 就调用，把画像做成可本地打开的 HTML。每人一张卡片，手机上也能读。用我提供的人物图；有图像生成工具时可配原创人物插图，图像不可用时先交文字卡片。保存 HTML 和画像汇总，并告诉我文件位置。</pre>
+  <pre id="p3">只使用已确认的「课堂示例知识库」和前面实际用的技能或文件工具。未确认目录时先问我。
+1. 用微信原文给林黛玉、孙悟空和唐僧各建一页。写「这笔钱」「怎么聊」「还要问」，用生活里的话写一句开场，依据已知事实，不补动作或场景。原话逐字核对并标消息编号。「暂估」「大概」「最早可能」等限定要保留。区分客户说的、经理记录的、你的理解和待确认事项。性格不能代替正式风险测评。已核实的产品单独整理，条款缺项时也先做画像。
+2. 保存 wiki/客户画像汇总.md 和 wiki/客户画像.html。HTML 每人一张卡，手机可读，可离线打开。如果已有 UI/UX Pro Max Skill 就调用，有现成人物图就用。缺技能或图片时直接用简单 HTML 和文字卡片，不等安装或出图。
+3. 更新现有索引和日志，确认两个文件已保存，回复它们的路径、实际用到的技能和仍缺的资料。</pre>
   <div class="res"><a href="#classroom-portraits">查看三位客户的图文画像</a>。先自行判断，再用卡片里的原话和消息编号核对。</div>
 </section>
 
 <section id="s5">
-  <h2><span class="n">5</span>自动调用专家做产品推荐（15 分钟）</h2>
-  <p>一条 prompt 自动依次调用金融专家和营销专家，<b>不用你手动切换专家</b>。最后仍由你人工审核话术。</p>
-  <div class="phead"><span class="lbl">金融专家 + 营销专家一次跑完（复制）</span><button class="copy" data-t="p4">复制</button></div>
-  <pre id="p4">只读取已确认的「课堂示例知识库」。未确认目录时先问我。请依次完成以下两步，不要让我手动切换专家：
+  <h2><span class="n">5</span>核对产品并起草微信（15 分钟）</h2>
+  <p>先用金融专家的视角核对条件，再用营销专家的视角写消息。经理审阅后再决定怎么发。</p>
+  <div class="phead"><span class="lbl">产品核对与微信草稿（复制）</span><button class="copy" data-t="p4">复制</button></div>
+  <pre id="p4">只用已确认的「课堂示例知识库」，默认处理孙悟空。未确认目录时先问我。依次完成两步；有对应 WorkBuddy 专家就调用，没有就直接按下面的角色要求做。
 
-【第一步：金融专家产品匹配】
-以金融专家身份，基于 wiki/ 里的客户画像和产品资料，为我指定的课堂客户做产品匹配。没指定时先用孙悟空的样例：
-1. 只从 wiki/ 里已有的建行自有产品里选，不引入外部产品；
-2. 输出匹配度表格：产品名 / 是否符合风险偏好 / 是否符合期限 / 依据来源；
-3. 客户风险等级与产品风险等级不匹配的产品直接排除，不进入候选名单；
-4. 缺信息（如风险测评结果）就列出来让我补充，不要假设。
+1. 金融专家视角。项目款与个人资金分列。项目权限未确认，先核对付款时间和签字人。候选限知识库中已核实的建行自有产品，须确认客户的正式风险测评有效、与产品风险等级匹配，且用款条件符合。用最早用款日比较产品退出和到账条件；期限短于资金闲置时间，不能单凭这一点排除。资料不足时写「暂不推荐」及待确认项，引用依据。
+2. 营销专家视角。即使暂无候选，也写一条可审阅的微信草稿。仿照我平时的口气和称呼；没给写法就参考经理小陈的消息，沿用「您」等称呼，别把客户自称「老孙」当作经理称呼。先回应对方当下关心的事，再问一个问题。孙悟空偏好微信三条重点，就用不超过三条短句。合规判断和内部核对留在经理说明里，不放进草稿。
 
-【第二步：营销专家话术】
-在第一步结果基础上，以营销专家身份，为同一位客户写一段微信话术：
-1. 只用第一步确认的候选产品。缺关键信息或没有合适候选时，先追问；
-2. 用一对一沟通的口气。有我给的消息样例时，仿照我的称呼和表达方式；
-3. 先回应这位客户关心的资金用途、用款时间或权限，再讲相关条件。项目款和个人资金分开。权限不明的受托资金先核对用途和审批人；
-4. 用日常说法讲清客户需要知道的产品条件和风险，例如能否提前取用、收益按什么条件确定。产品事实以已核对的正式资料为依据；
-5. 只写已经确认或已经做到的事，不要写"我没动XX""我另外整理XX""我先查一下再回复您"这类还没做的动作；
-6. 合规规则只作为经理内部核对的参考。内部文件、核对清单和审阅意见不发给客户。客户草稿围绕对方的问题来写，用自然的说法交代相关条件；
-7. 200 字以内，结尾留一个开放式问题。</pre>
-  <div class="res"><b>给孙悟空的草稿（需经理审核）</b><br>悟空，10 号的工程尾款我单独记下了。您自己的那笔，先看会不会跟原来买的东西重了。您方便说说现在大概有哪些类型吗？金额先不用发我。</div>
+在对话中依次给我「经理内部核对」和 200 字以内的「微信草稿」，并保存到 wiki/消息草稿.md。不发送消息。</pre>
+  <div class="res"><b>给孙悟空的草稿（需经理审核）</b><br>您说的 10 号工程尾款，我单独记下了。个人那笔可以先看看会不会和原来买的重了。您手里的资金现在主要买了哪几类？金额先不用发我。</div>
 </section>
 
 <section id="s7">
@@ -464,9 +451,9 @@ https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html
     <details class="sample-bundle"><summary>查看批量录入指令</summary>
 <!-- sample-copy-all:start -->
   <pre id="w_all">只在独立的「课堂示例知识库」整理本次材料。未确认目录时先问我，不要读取真实微信或写入业务库。
-以下是全部虚构的课堂对话。请按每段开头的文件名分别保存原文，再用 llm-wiki-kit 入库。
-为每位客户建一页，保留消息编号、日期、明确说过的话和待确认信息。
-正式风险测评未提供。更新索引和更新日志，告诉我收到哪几份记录。
+以下是全部虚构的课堂对话。请用上一步实际可用的 LLM Wiki 技能或本地文件工具，按文件名分别保存到 raw/客户微信/。
+保留原文、编号、日期和说话人，每份核对 10 条。本步只归档原文，画像在第 4 步统一生成。
+在现有索引和日志中登记，回报文件位置和条数。正式风险测评未提供。
 
 【客户微信_林黛玉.txt】
 # 林黛玉的微信式课堂对话
@@ -916,7 +903,7 @@ showLinkedSection();
     permission: ['权限确认|权限弹窗|只读权限', '决定任务可以访问哪些文件或执行哪些动作。WorkBuddy 在默认权限下可能对敏感操作或工作空间之外的动作发出确认提示。看清对象和动作再选，例如这次只需要读指定目录。'],
     skill: ['Skill|技能', 'WorkBuddy 能重复调用的做事方法，可以把说明、参考资料或辅助脚本放在一起。相同步骤频繁重做时最有用，例如每次整理新聊天都保留原文、标注出处并更新日志。', 'skill'],
     market: ['技能市场|安装确认', 'WorkBuddy 里查找、查看和安装 Skill 的入口。已有可复用技能时，先在市场看名称、作者、用法和权限，再确认安装。可在“已安装”里核对是否成功。', 'skill'],
-    kit: ['llm-wiki-kit', 'WorkBuddy 用来整理你交给它的文件和记录的技能。', 'skill'],
+    kit: ['llm-wiki-kit|llm-wiki', 'WorkBuddy 用来归档原件、整理知识页和更新索引的技能。课堂上先看自己装的是哪个名字。', 'skill'],
     designSkill: ['UI/UX Pro Max Skill|UI/UX Pro Max', '用来设计页面排版的技能。这里让 WorkBuddy 把客户原话、要点和插图放到一张卡片，再检查手机上能不能顺着读。', 'skill'],
     llmWiki: ['LLM Wiki', '把文件或记录交给 WorkBuddy，它负责保存原文和更新知识页。'],
     library: ['资料知识库|知识库', '集中放原始资料、整理结果和出处。'],
