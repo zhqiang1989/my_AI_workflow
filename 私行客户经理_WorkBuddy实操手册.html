@@ -58,9 +58,10 @@ footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px
 @media(max-width:640px){.plabel{display:none}.pstep{flex:1}.pline{margin:0 3px}}
 
 /* 页签切换 */
-.tabs{display:flex;gap:6px;border-bottom:2px solid var(--line);margin:0 0 18px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:2px solid var(--line);margin:0 0 18px}
 .tab{appearance:none;border:1px solid var(--line);border-bottom:none;background:var(--card);color:var(--ink2);padding:9px 18px;font-size:14px;cursor:pointer;border-radius:8px 8px 0 0;position:relative;top:2px;font-family:inherit}
 .tab.active{background:var(--blue);color:#fff;border-color:var(--blue);font-weight:600}
+@media(max-width:480px){.tab{padding-inline:10px}}
 .panel{display:none}
 .panel.active{display:block}
 .chatcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:16px;box-shadow:0 2px 12px rgba(20,50,90,.05)}
@@ -98,41 +99,39 @@ footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px
 <header>
   <div class="eyebrow">中国建设银行 · 私人银行客户经理培训</div>
   <h1>WorkBuddy + LLM Wiki 基础实操手册</h1>
-  <p>从零到跑通第一条工作流：微信归档 → 客户画像 → 产品推荐 → 自动更新 · 零基础版</p>
+  <p>用课堂样例跟做：整理资料 → 生成客户画像 → 准备沟通草稿</p>
 </header>
 
 <div class="wrap">
-<div class="tabs" role="tablist">
-  <button class="tab active" data-panel="panel-manual" role="tab">📘 操作手册</button>
-  <button class="tab" data-panel="panel-chat" role="tab">💬 客户微信对话</button>
+<div class="tabs" role="tablist" aria-label="实操手册">
+  <button type="button" id="tab-manual" class="tab active" data-panel="panel-manual" role="tab" aria-controls="panel-manual" aria-selected="true">示例工作流</button>
+  <button type="button" id="tab-automation" class="tab" data-panel="panel-automation" role="tab" aria-controls="panel-automation" aria-selected="false" tabindex="-1">微信连接与定时</button>
+  <button type="button" id="tab-chat" class="tab" data-panel="panel-chat" role="tab" aria-controls="panel-chat" aria-selected="false" tabindex="-1">客户对话样例</button>
 </div>
-<div id="panel-manual" class="panel active">
+<div id="panel-manual" class="panel active" role="tabpanel" aria-labelledby="tab-manual">
 
 <div class="pbar">
   <div class="inner">
     <div class="pstep" data-step="s1"><div class="pdot">1</div><span class="plabel">准备</span><div class="pline"></div></div>
     <div class="pstep" data-step="s2"><div class="pdot">2</div><span class="plabel">装技能搭库</span><div class="pline"></div></div>
-    <div class="pstep" data-step="s3"><div class="pdot">3</div><span class="plabel">微信归档</span><div class="pline"></div></div>
+    <div class="pstep" data-step="s3"><div class="pdot">3</div><span class="plabel">整理样例资料</span><div class="pline"></div></div>
     <div class="pstep" data-step="s4"><div class="pdot">4</div><span class="plabel">编译画像</span><div class="pline"></div></div>
-    <div class="pstep" data-step="s5"><div class="pdot">5</div><span class="plabel">产品推荐</span><div class="pline"></div></div>
-    <div class="pstep" data-step="s6"><div class="pdot">6</div><span class="plabel">定时任务</span><div class="pline"></div></div>
-    <div class="pstep" data-step="s7"><div class="pdot">7</div><span class="plabel">合规</span></div>
+    <div class="pstep" data-step="s5"><div class="pdot">5</div><span class="plabel">产品推荐</span></div>
   </div>
 </div>
 <nav>
   <b>步骤：</b>
   <a href="#s1">1 准备</a>
   <a href="#s2">2 装技能搭库</a>
-  <a href="#s3">3 微信归档</a>
+  <a href="#s3">3 整理样例资料</a>
   <a href="#s4">4 编译画像</a>
   <a href="#s5">5 产品推荐</a>
-  <a href="#s6">6 定时任务</a>
-  <a href="#s7">7 合规底线</a>
+  <a href="#s7">合规底线</a>
 </nav>
 
 <section id="s1">
   <h2><span class="n">1</span>准备（2 分钟）</h2>
-  <div class="note blue"><b>只需要做一件事</b>注册并登录 WorkBuddy 桌面客户端，保持运行。<b>其余所有操作——建文件夹、装技能、搭库、抓资料、配定时任务——全部复制下面的 prompt 交给 WorkBuddy 自动完成，不用手动点击界面。</b></div>
+  <div class="note blue"><b>从课堂样例开始</b>登录 WorkBuddy 桌面客户端，按本页次序复制提示词。第 3 步带有虚构客户对话，直接用它练习。</div>
   <div class="note red"><b>数据安全</b>本手册客户资料全部为虚构脱敏示例。真实使用时，客户姓名、账号、资产金额必须脱敏后才能入库。</div>
 </section>
 
@@ -149,10 +148,10 @@ footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px
 </section>
 
 <section id="s3">
-  <h2><span class="n">3</span>微信归档 + 产品资料（20 分钟）</h2>
+  <h2><span class="n">3</span>课堂样例 + 产品资料（20 分钟）</h2>
   <p>两条 prompt：一条自动造课堂样例数据，一条自动抓取建行官网公开产品信息。都无需手动建文件或填路径。</p>
 
-  <h3>① 自动生成课堂样例（不连真实微信时用这条）</h3>
+  <h3>① 导入课堂样例</h3>
   <div class="phead"><span class="lbl">自动造样例数据并归档（复制）</span><button class="copy" data-t="p0">复制</button></div>
   <div class="note blue" style="margin-top:0;border-radius:0 0 8px 8px"><b>内容已内置</b>三段客户的完整对话（约 5000 字）已写进这条指令，页面上不展开显示。点右上角"复制"即可把全文连同归档指令一起复制，直接发给 WorkBuddy 自动建文件、建画像。</div>
   <pre id="p0" class="hidden-pre">在 知识库根目录 下的 raw\客户微信\ 中创建以下三个文件。文件内容为脱敏教学样例，直接按下面给出的全文写入，不要读取或修改真实微信数据。
@@ -303,22 +302,7 @@ footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px
 
 三个文件创建完成后，用 llm-wiki-kit 技能把它们编译进 wiki/：为每位客户建画像页，标注来源与日期，更新 index.md 和 log.md，并告诉我结果。</pre>
 
-  <h3>② 真实微信自动归档（连真实微信时用这条）</h3>
-  <div class="phead"><span class="lbl">微信归档指令（复制）</span><button class="copy" data-t="p2" data-ask="clients">复制</button></div>
-  <pre id="p2">用电脑操作能力帮我归档微信聊天记录：
-
-【第一步：确认客户名单，仅在必要时询问】检查下面第二步里的客户名是否还是样例（王先生、李女士、张总）。若还是样例，说明尚未填入你的真实客户，请先问我："你微信里需要归档的客户分别叫什么名字？"等我回答后，用真实名字替换样例名再执行；若我在课堂上回答"用样例"，就按样例执行。若客户名已经是我的真实姓名（不是样例），则跳过询问，直接执行。
-
-【第二步：归档】
-1. 打开桌面已登录的微信，找到客户王先生、李女士、张总（以我实际给出的名字为准）的聊天窗口；
-2. 只读最近 30 天聊天记录，不要发送任何消息、不要改动微信里的任何数据；
-3. 客户姓名用化名、金额和账号脱敏，整理成纯文本；
-4. 分别保存到 知识库根目录\raw\客户微信\客户微信_<客户名>.txt 文件（每个客户一个文件）；
-5. 保存后用 llm-wiki-kit 技能把这些文件编译进 wiki/，并告诉我归档了哪些客户。
-如果找不到某位客户或无法登录微信，跳过该客户并如实告诉我，不要中断。</pre>
-  <div class="note amber"><b>如实说明</b>WorkBuddy 国内版没有个人微信官方连接器，个人微信只能走电脑操作；企业微信有官方连接器，更稳定。电脑操作全程只读，不发送任何消息。</div>
-
-  <h3>③ 自动抓取建行官网公开产品信息</h3>
+  <h3>② 自动抓取建行官网公开产品信息</h3>
   <p>下面是建行官网真实公开链接（2026 年 11 月可访问），WorkBuddy 会自动打开、抓取、整理成文件。</p>
   <table>
     <tr><th>产品类型</th><th>建行官网公开页面</th></tr>
@@ -378,6 +362,36 @@ https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html
   <div class="res"><b>话术示例（需人工审核）：</b><br>王先生您好，您提到利率还在降、那笔 500 万的乾元-私享 12 月中旬到期——我按您说的稳健、半年以内，先给您看建行"利得盈"私行优享最新一期：118 天，官网公告年化 0.65%—2.05%，收益有下限保底。您看这期期限，跟孩子这笔钱的安排对得上吗？</div>
 </section>
 
+<section id="s7">
+  <h2>三条合规底线</h2>
+  <div class="note red"><b>1 · 脱敏</b>真实客户姓名、账号、金额必须脱敏后入库；客户数据只存本地，不上传、不同步公共盘。</div>
+  <div class="note red"><b>2 · 人工审核</b>AI 生成的话术、推荐必须逐句审核后才能发送。微信自动归档只读不发送。AI 只起草，不对外沟通。</div>
+  <div class="note red"><b>3 · 不承诺不夸大</b>不得承诺保本保收益；收益率以建行官方最新公告为准；风险不匹配一票否决。</div>
+  <div class="note blue"><b>跑通后的效果</b>整理一位客户资料从 30–40 分钟压缩到几分钟，每位客户都能有个性化触达内容。省下的时间用于面谈、转介绍和拓新客。</div>
+</section>
+
+</div>
+
+<div id="panel-automation" class="panel" role="tabpanel" aria-labelledby="tab-automation">
+<div class="note blue">沿用示例工作流里建好的知识库目录。打开并登录电脑微信，核对联系人后先试一次归档，再设置定时任务。</div>
+<section id="wechat-archive">
+  <h2>连接电脑微信并归档</h2>
+  <div class="phead"><span class="lbl">微信归档指令（复制）</span><button class="copy" data-t="p2" data-ask="clients">复制</button></div>
+  <pre id="p2">用电脑操作能力帮我归档微信聊天记录：
+
+【第一步：确认客户名单，仅在必要时询问】检查下面第二步里的客户名是否还是样例（王先生、李女士、张总）。若还是样例，说明尚未填入你的真实客户，请先问我："你微信里需要归档的客户分别叫什么名字？"等我回答后，用真实名字替换样例名再执行；若我在课堂上回答"用样例"，就按样例执行。若客户名已经是我的真实姓名（不是样例），则跳过询问，直接执行。
+
+【第二步：归档】
+1. 打开桌面已登录的微信，找到客户王先生、李女士、张总（以我实际给出的名字为准）的聊天窗口；
+2. 只读最近 30 天聊天记录，不要发送任何消息、不要改动微信里的任何数据；
+3. 客户姓名用化名、金额和账号脱敏，整理成纯文本；
+4. 分别保存到 知识库根目录\raw\客户微信\客户微信_<客户名>.txt 文件（每个客户一个文件）；
+5. 保存后用 llm-wiki-kit 技能把这些文件编译进 wiki/，并告诉我归档了哪些客户。
+如果找不到某位客户或无法登录微信，跳过该客户并如实告诉我，不要中断。</pre>
+  <div class="note amber"><b>如实说明</b>WorkBuddy 国内版没有个人微信官方连接器，个人微信只能走电脑操作；企业微信有官方连接器，更稳定。电脑操作全程只读，不发送任何消息。</div>
+
+</section>
+
 <section id="s6">
   <h2><span class="n">6</span>自动创建并验证定时任务（10 分钟）</h2>
   <p>把下面的 prompt 复制发送，WorkBuddy 会<b>自己创建定时任务、自己立即跑一次验证</b>——你不用去"定时任务"页面手动新建、设时间、选目录、点立即执行。</p>
@@ -400,17 +414,9 @@ https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html
   <div class="res"><b>预期结果：</b>WorkBuddy 自动建好定时任务并当场跑一次给你看。之后每天早上自动归档微信、更新画像、生成待办清单。你只需看一眼"待确认事项"。</div>
 </section>
 
-<section id="s7">
-  <h2><span class="n">7</span>三条合规底线</h2>
-  <div class="note red"><b>1 · 脱敏</b>真实客户姓名、账号、金额必须脱敏后入库；客户数据只存本地，不上传、不同步公共盘。</div>
-  <div class="note red"><b>2 · 人工审核</b>AI 生成的话术、推荐必须逐句审核后才能发送。微信自动归档只读不发送。AI 只起草，不对外沟通。</div>
-  <div class="note red"><b>3 · 不承诺不夸大</b>不得承诺保本保收益；收益率以建行官方最新公告为准；风险不匹配一票否决。</div>
-  <div class="note blue"><b>跑通后的效果</b>整理一位客户资料从 30–40 分钟压缩到几分钟，每位客户都能有个性化触达内容。省下的时间用于面谈、转介绍和拓新客。</div>
-</section>
-
 </div>
 
-<div id="panel-chat" class="panel">
+<div id="panel-chat" class="panel" role="tabpanel" aria-labelledby="tab-chat">
   <div class="note blue"><b>这段怎么用</b>点顶部蓝色按钮 <b>📋 复制全部三段对话</b>，会一次性复制「三段对话全文 + 录入 LLM Wiki 的指令」，直接粘给 WorkBuddy 就能自动归档、建画像、一键处理；也可点每段右上角单独复制某一段。</div>
   <button class="copy" data-t="w_all" id="copyallBtn" data-label="📋 复制全部三段对话" style="background:var(--blue);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:600;cursor:pointer;margin:4px 0 16px">📋 复制全部三段对话</button>
   <pre id="w_all" class="hidden-pre"># 客户微信_王先生（化名）· 私行 C3 级 · 2026-11
@@ -815,7 +821,7 @@ https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html
   var secs=steps.map(function(st){return document.getElementById(st.getAttribute('data-step'))});
   function update(){
     var cur=0;
-    secs.forEach(function(sec,i){if(sec&&sec.getBoundingClientRect().top<=window.innerHeight*0.45)cur=i});
+    secs.forEach(function(sec,i){if(sec?.getClientRects().length&&sec.getBoundingClientRect().top<=window.innerHeight*0.45)cur=i});
     steps.forEach(function(st,i){
       st.classList.toggle('done',i<cur);
       st.classList.toggle('active',i===cur);
@@ -828,16 +834,39 @@ https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html
 })();
 
 // 页签切换
-document.querySelectorAll('.tab').forEach(function(t){
-  t.addEventListener('click',function(){
-    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});
-    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});
-    this.classList.add('active');
-    var target=document.getElementById(this.getAttribute('data-panel'));
-    if(target)target.classList.add('active');
-    window.scrollTo(0,0);
+const manualTabs = [...document.querySelectorAll('.tab')];
+function selectManualTab(selected) {
+  for (const tab of manualTabs) {
+    const active = tab === selected;
+    tab.classList.toggle('active', active);
+    tab.setAttribute('aria-selected', String(active));
+    tab.tabIndex = active ? 0 : -1;
+    document.getElementById(tab.dataset.panel).classList.toggle('active', active);
+  }
+}
+manualTabs.forEach((tab, index) => {
+  tab.addEventListener('click', () => {
+    selectManualTab(tab);
+    window.scrollTo(0, 0);
+  });
+  tab.addEventListener('keydown', event => {
+    const direction = {ArrowLeft: -1, ArrowRight: 1}[event.key];
+    if (!direction) return;
+    event.preventDefault();
+    const next = manualTabs[(index + direction + manualTabs.length) % manualTabs.length];
+    next.click();
+    next.focus();
   });
 });
+function showLinkedSection() {
+  const section = document.getElementById(location.hash.slice(1));
+  const panel = section?.closest('[role=tabpanel]');
+  if (!panel || panel.classList.contains('active')) return;
+  selectManualTab(document.getElementById(panel.getAttribute('aria-labelledby')));
+  section.scrollIntoView();
+}
+window.addEventListener('hashchange', showLinkedSection);
+showLinkedSection();
 </script>
 <div class="term-box" id="termBox" role="tooltip" hidden><strong></strong><span></span></div>
 <script>
@@ -1080,9 +1109,9 @@ document.querySelectorAll('.tab').forEach(function(t){
   window.addEventListener('resize', placeBox);
   window.addEventListener('scroll', placeBox, {capture: true, passive: true});
 
-  document.querySelectorAll('header, #panel-manual section, #panel-chat')
+  document.querySelectorAll('header, #panel-manual section, #panel-automation > .note, #panel-automation section, #panel-chat')
     .forEach(region => markTerms(region, true));
-  document.querySelectorAll('#panel-manual pre, #panel-chat pre')
+  document.querySelectorAll('.panel pre')
     .forEach(pre => markTerms(pre));
 })();
 </script>
