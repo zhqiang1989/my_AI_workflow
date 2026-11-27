@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>建行私行客户经理 · WorkBuddy 实操手册（基础版）</title>
+<style>
+:root{--blue:#0066b3;--dark:#004b87;--light:#e8f2fb;--ink:#1a2634;--ink2:#45566b;--ink3:#71839a;--line:#d8e2ee;--bg:#f5f8fc;--card:#fff;--green:#1a8a5a;--greenbg:#e8f6ef;--amber:#a86a00;--amberbg:#fdf3e0;--red:#c0392b;--redbg:#fdeceb;--code:#f1f5f9;--codeink:#243447}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7;font-size:15px}
+a{color:var(--blue);text-decoration:none}code{background:#eef3f8;padding:1px 5px;border-radius:4px;font-size:.92em}
+header{background:linear-gradient(135deg,#0066b3,#004b87);color:#fff;padding:30px 36px}
+header .eyebrow{font-size:12px;letter-spacing:2px;opacity:.85}
+header h1{margin:8px 0 0;font-size:25px;font-weight:600}
+header p{margin:8px 0 0;font-size:14px;opacity:.9}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+nav{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:22px 0 18px;box-shadow:0 2px 12px rgba(20,50,90,.05)}
+nav b{font-size:12px;color:var(--ink3);margin-right:12px}
+nav a{display:inline-block;margin:3px 12px 3px 0;font-size:13px}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 26px;margin-bottom:16px;box-shadow:0 2px 12px rgba(20,50,90,.05);scroll-margin-top:60px}
+h2{margin:0 0 12px;font-size:19px;color:var(--dark)}
+h2 .n{display:inline-block;width:26px;height:26px;line-height:26px;text-align:center;background:var(--blue);color:#fff;border-radius:50%;font-size:12px;margin-right:8px}
+h3{font-size:14px;margin:18px 0 6px}
+p{margin:7px 0}
+ol{margin:8px 0;padding-left:22px}li{margin:5px 0}
+.note{border-radius:8px;padding:11px 14px;margin:12px 0;font-size:13px;border:1px solid}
+.note b{display:block;margin-bottom:2px}
+.note.blue{background:var(--light);border-color:#b9d9f2;color:#0d4b7d}
+.note.amber{background:var(--amberbg);border-color:#f0d9a8;color:#7d5200}
+.note.red{background:var(--redbg);border-color:#f3c6c1;color:#a32c1f}
+.note.green{background:var(--greenbg);border-color:#b8e2cb;color:#0d6b43}
+.phead{display:flex;justify-content:space-between;align-items:center;background:#e2ebf5;border:1px solid var(--line);border-bottom:none;border-radius:8px 8px 0 0;padding:6px 12px;font-size:12px;color:var(--ink2)}
+.phead .lbl{font-weight:600;color:var(--dark)}
+.copy{border:1px solid #b9d3e8;background:#fff;color:var(--dark);border-radius:5px;padding:3px 11px;font-size:12px;cursor:pointer}
+.copy.done{background:var(--greenbg);color:var(--green)}
+pre{background:var(--code);color:var(--codeink);border:1px solid var(--line);border-radius:0 0 8px 8px;padding:13px 15px;margin:0;overflow-x:auto;font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;font-family:"SFMono-Regular",Consolas,Monaco,monospace}
+.res{background:#fbfdff;border:1px solid #cfe0f0;border-left:4px solid var(--blue);border-radius:7px;padding:10px 14px;margin-top:10px;font-size:13px}
+.res b{color:var(--dark)}
+.sample{background:#fcfdff;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:10px 0;font-size:13px;white-space:pre-wrap;color:var(--ink2)}
+.sample .t{font-weight:600;color:var(--dark);display:block;margin-bottom:5px;font-size:12px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13px}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left}th{background:var(--light);color:var(--dark)}
+footer{text-align:center;color:var(--ink3);font-size:12px;padding:20px 16px 34px}
+@media(max-width:640px){header{padding:22px}section{padding:18px}}
+
+/* 贯穿进度diagram */
+.pbar{position:sticky;top:0;z-index:20;background:rgba(245,248,252,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 0 12px;margin:0 0 6px}
+.pbar .inner{max-width:900px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:0}
+.pstep{display:flex;align-items:center;flex:1;position:relative;min-width:0}
+.pstep:last-child{flex:0 0 auto}
+.pdot{width:30px;height:30px;border-radius:50%;flex:0 0 30px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;border:2px solid var(--line);background:var(--card);color:var(--ink3);transition:all .3s}
+.pstep.done .pdot{background:var(--green);border-color:var(--green);color:#fff}
+.pstep.active .pdot{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 0 0 4px var(--light)}
+.plabel{font-size:11px;color:var(--ink3);margin-left:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:all .3s}
+.pstep.active .plabel{color:var(--dark);font-weight:600}
+.pline{height:2px;background:var(--line);flex:1;margin:0 6px;min-width:8px;transition:all .3s}
+.pstep.done .pline{background:var(--green)}
+@media(max-width:640px){.plabel{display:none}.pstep{flex:1}.pline{margin:0 3px}}
+
+/* 页签切换 */
+.tabs{display:flex;gap:6px;border-bottom:2px solid var(--line);margin:0 0 18px}
+.tab{appearance:none;border:1px solid var(--line);border-bottom:none;background:var(--card);color:var(--ink2);padding:9px 18px;font-size:14px;cursor:pointer;border-radius:8px 8px 0 0;position:relative;top:2px;font-family:inherit}
+.tab.active{background:var(--blue);color:#fff;border-color:var(--blue);font-weight:600}
+.panel{display:none}
+.panel.active{display:block}
+.chatcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:16px;box-shadow:0 2px 12px rgba(20,50,90,.05)}
+.chatcard h3{margin:0 0 4px;font-size:16px;color:var(--dark)}
+.chatcard .meta{font-size:12px;color:var(--ink3);margin-bottom:12px}
+.chatcard pre{background:#f7f9fc;border:1px solid var(--line);border-radius:8px;padding:14px 16px;font-size:12.5px;line-height:1.7;max-height:420px;overflow:auto}
+
+.copyall{display:inline-block;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:600;cursor:pointer;margin:4px 0 16px;font-family:inherit;box-shadow:0 2px 8px rgba(0,102,179,.25)}
+.copyall:hover{background:var(--dark)}
+.copyall.done{background:var(--green)}
+.hidden-pre{display:none}
+
+/* 客户名询问弹窗 */
+.modal-mask{position:fixed;inset:0;background:rgba(20,40,70,.45);display:none;align-items:center;justify-content:center;z-index:200}
+.modal-mask.show{display:flex}
+.modal-box{background:#fff;border-radius:12px;padding:24px 28px;max-width:460px;width:90%;box-shadow:0 14px 44px rgba(0,0,0,.22)}
+.modal-box h3{margin:0 0 8px;font-size:17px;color:var(--dark)}
+.modal-box p{font-size:13px;color:var(--ink2);margin:0 0 14px;line-height:1.6}
+.modal-box input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:6px;font-size:14px;box-sizing:border-box;font-family:inherit}
+.modal-btns{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
+.modal-btns button{padding:8px 16px;border-radius:6px;border:1px solid var(--line);cursor:pointer;font-size:14px;font-family:inherit;background:#fff;color:var(--ink)}
+.modal-btns .ok{background:var(--blue);color:#fff;border-color:var(--blue);font-weight:600}
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">中国建设银行 · 私人银行客户经理培训</div>
+  <h1>WorkBuddy + LLM Wiki 基础实操手册</h1>
+  <p>从零到跑通第一条工作流：微信归档 → 客户画像 → 产品推荐 → 自动更新 · 零基础版</p>
+</header>
+
+<div class="wrap">
+<div class="tabs" role="tablist">
+  <button class="tab active" data-panel="panel-manual" role="tab">📘 操作手册</button>
+  <button class="tab" data-panel="panel-chat" role="tab">💬 客户微信对话</button>
+</div>
+<div id="panel-manual" class="panel active">
+
+<div class="pbar">
+  <div class="inner">
+    <div class="pstep" data-step="s1"><div class="pdot">1</div><span class="plabel">准备</span><div class="pline"></div></div>
+    <div class="pstep" data-step="s2"><div class="pdot">2</div><span class="plabel">装技能搭库</span><div class="pline"></div></div>
+    <div class="pstep" data-step="s3"><div class="pdot">3</div><span class="plabel">微信归档</span><div class="pline"></div></div>
+    <div class="pstep" data-step="s4"><div class="pdot">4</div><span class="plabel">编译画像</span><div class="pline"></div></div>
+    <div class="pstep" data-step="s5"><div class="pdot">5</div><span class="plabel">产品推荐</span><div class="pline"></div></div>
+    <div class="pstep" data-step="s6"><div class="pdot">6</div><span class="plabel">定时任务</span><div class="pline"></div></div>
+    <div class="pstep" data-step="s7"><div class="pdot">7</div><span class="plabel">合规</span></div>
+  </div>
+</div>
+<nav>
+  <b>步骤：</b>
+  <a href="#s1">1 准备</a>
+  <a href="#s2">2 装技能搭库</a>
+  <a href="#s3">3 微信归档</a>
+  <a href="#s4">4 编译画像</a>
+  <a href="#s5">5 产品推荐</a>
+  <a href="#s6">6 定时任务</a>
+  <a href="#s7">7 合规底线</a>
+</nav>
+
+<section id="s1">
+  <h2><span class="n">1</span>准备（2 分钟）</h2>
+  <div class="note blue"><b>只需要做一件事</b>注册并登录 WorkBuddy 桌面客户端，保持运行。<b>其余所有操作——建文件夹、装技能、搭库、抓资料、配定时任务——全部复制下面的 prompt 交给 WorkBuddy 自动完成，不用手动点击界面。</b></div>
+  <div class="note red"><b>数据安全</b>本手册客户资料全部为虚构脱敏示例。真实使用时，客户姓名、账号、资产金额必须脱敏后才能入库。</div>
+</section>
+
+<section id="s2">
+  <h2><span class="n">2</span>自动建目录、装技能、搭库（15 分钟）</h2>
+  <p>一条 prompt 全包：建文件夹、检查并安装技能、搭好知识库。复制发送即可，无需任何额外输入。</p>
+  <div class="phead"><span class="lbl">① 一键建库（复制这一条即可）</span><button class="copy" data-t="p1">复制</button></div>
+  <pre id="p1">请完成以下全部操作，不要让我再做任何手动步骤：
+1. 确定知识库根目录：优先用你"文档"文件夹下的 私行知识库（Windows 通常是 C:\Users\你的用户名\Documents\私行知识库，macOS 通常是 ~/Documents/私行知识库）；如果该位置不可用，就在当前工作空间下建一个 私行知识库 文件夹。不要写死盘符（例如 D:），因为学员电脑不一定有该盘。创建后把当前任务的工作空间设为这个文件夹，并在回复里告诉我它的完整路径——后面我会用"知识库根目录"指代它；
+2. 检查技能 llm-wiki-kit（显示名"LLM Wiki 知识库套件"）是否已安装并启用：已安装但未启用就启用它；未安装就从技能市场按名称 llm-wiki-kit 搜索并安装，装完启用；它实现的是 Karpathy LLM Wiki 模式，是我们要用的知识库技能；若确实搜不到，如实告诉我，不要假装装上了；
+3. 用这个技能在刚才确定的知识库根目录搭建私人银行客户资料知识库：建立 raw/（只读原始资料）和 wiki/（知识页），raw/ 下建"客户微信""行内产品资料""战略与指令""合规规则"四个子文件夹，根目录建 AGENTS.md、index.md、log.md；归档规则和冲突处理规则由技能按默认规范写入 AGENTS.md，不用我自己写；
+4. 建好后告诉我：技能是否安装成功、目录结构、以及下一步该怎么用。</pre>
+  <div class="res"><b>预期结果：</b>技能被安装启用，目录自动生成。结果区出现 <code>AGENTS.md</code>、<code>raw/</code>、<code>wiki/</code> 等文件。如果技能确实搜不到，WorkBuddy 会如实告知。</div>
+</section>
+
+<section id="s3">
+  <h2><span class="n">3</span>微信归档 + 产品资料（20 分钟）</h2>
+  <p>两条 prompt：一条自动造课堂样例数据，一条自动抓取建行官网公开产品信息。都无需手动建文件或填路径。</p>
+
+  <h3>① 自动生成课堂样例（不连真实微信时用这条）</h3>
+  <div class="phead"><span class="lbl">自动造样例数据并归档（复制）</span><button class="copy" data-t="p0">复制</button></div>
+  <div class="note blue" style="margin-top:0;border-radius:0 0 8px 8px"><b>内容已内置</b>三段客户的完整对话（约 5000 字）已写进这条指令，页面上不展开显示。点右上角"复制"即可把全文连同归档指令一起复制，直接发给 WorkBuddy 自动建文件、建画像。</div>
+  <pre id="p0" class="hidden-pre">在 知识库根目录 下的 raw\客户微信\ 中创建以下三个文件。文件内容为脱敏教学样例，直接按下面给出的全文写入，不要读取或修改真实微信数据。
+
+【客户微信_王先生.txt】
+# 客户微信_王先生（化名）· 私行 C3 级 · 2026-11
+
+&gt; 教学示意，全部信息虚构脱敏。档案卡模拟客户经理从行内系统摘录、随聊天记录一并整理入档的客户背景信息。
+
+## 行内客户档案卡（系统摘录）
+
+- 客户编号：PB-2021-08***（脱敏）；客户经理：小陈
+- **私行等级**：C3 级（月日均金融资产 1000 万 ≤ AUM &lt; 2000 万）
+- **AUM**：约 1500 万元；本行金融资产：1400 万，他行约 100 万
+- **风险测评**：稳健型（问卷 27 分，21–30 分区间）；测评日期 2026-03-18，**有效期至 2027-03-18**
+- 资产结构：稳健类理财约 800 万（含&quot;乾元-私享&quot;500 万，2026-12 到期）、大额存单 400 万、活期及货币类 300 万
+- 家庭：已婚，配偶 45 岁（全职），一子 17 岁，计划明年赴美留学
+- 职业：某精密制造企业创始人兼董事长，企业年营收约 2 亿，公司股权为其主要资产来源
+- 沟通偏好：微信文字为主，工作繁忙，极少接电话；对&quot;本金安全&quot;高度敏感
+
+## 微信对话
+
+**【2026年11月3日 09:42】**
+
+**小陈**：王先生早上好，好久没联系了，最近公司忙吗？
+**王先生**：还行，年底冲业绩，忙得很。小陈，我那笔&quot;乾元-私享&quot;下个月 12 号到期了，最近看新闻说利率还要降，有没有稳一点的产品接上？
+**小陈**：有的。您这笔到期的是 500 万对吧？我按您上次测评的稳健型来匹配——您问卷是 27 分稳健型，还在有效期内，我就按这个等级选，不往上推风险。
+**王先生**：对，500 万。稳健就行，我这个钱是给儿子留的，本金不能有闪失。
+**小陈**：明白。除了这笔到期资金，您整体资金最近有别的安排吗？我看您账上还有一部分活期。
+**王先生**：活期那 300 万是随时要用的，别动。另外我儿子明年出国留学，要准备一笔美元，大概 50 万美元等值，这个可能要放到明年上半年。
+
+**【2026年11月5日 14:18】**
+
+**王先生**：小陈，我再补充几点。第一，我不太能接受本金波动，稳健第一；第二，期限最好半年以内，留学用钱时间卡得比较紧；第三，美元那部分希望能换个渠道安排，别都放人民币。
+**小陈**：都记下了：稳健优先、半年以内、美元单独安排。您对收益大概什么预期？我好把握尺度。
+**王先生**：我不贪高，年化能到 2% 出头、比活期强就行，关键是稳、随时能取。你们那个结构性存款我看新闻提到过，是保本的吗？
+**小陈**：结构性存款和普通存款不一样，收益是浮动的，有下限也有上限，我把官网的公开说明和风险提示发您，您看完我们再定。任何产品我都不会跟您说&quot;保本保收益&quot;。
+**王先生**：[语音]8
+**王先生**：行，你发我看。对了，我太太那边也有一点钱，是她自己管的，改天我也让她跟你聊聊。
+**小陈**：好的，随时欢迎。您把她拉个群或者约个时间都行。
+
+**【2026年11月6日 10:05】**
+
+**小陈**：王先生，资料整理好了发您。这是建行官网公开的产品说明，我标了链接和页面日期，具体要素以最新公告为准。
+**王先生**：[图片]
+**小陈**：这份是&quot;利得盈&quot;私行优享结构性存款的公告，期限和起点都写在里面。您重点看风险提示那一栏。
+**王先生**：收到，我看完回复你。还有个事——我儿子明年出去，留学那笔钱我想提前规划，你们有没有那种教育金或者美元的产品？
+**小陈**：有，我回头单独整理一份美元和跨境的配置思路给您，这个要跟您的留学时间点对上，我们慢慢捋。
+**王先生**：好，不急，你整理好发微信就行。我平时开会多，电话经常不方便接。
+**小陈**:明白，都微信沟通。我把方案和风险提示写清楚发您。
+
+【客户微信_李女士.txt】
+# 客户微信_李女士（化名）· 私行 V 级 · 2026-11
+
+&gt; 教学示意，全部信息虚构脱敏。档案卡模拟客户经理从行内系统摘录、随聊天记录一并整理入档的客户背景信息。
+
+## 行内客户档案卡（系统摘录）
+
+- 客户编号：PB-2019-03***（脱敏）；客户经理：小陈
+- **私行等级**：V 级（月日均金融资产 2000 万 ≤ AUM &lt; 5000 万）
+- **AUM**：约 3200 万元；本行金融资产 2800 万，他行及证券账户约 400 万
+- **风险测评**：稳健型（问卷 25 分，21–30 分区间）；测评日期 2026-06-02，**有效期至 2027-06-02**
+- 资产结构：中长期理财约 1200 万、家族信托 1000 万（已设立）、保险 300 万、现金及货币类 700 万
+- 家庭：已婚，配偶 48 岁（某企业股东），育有一女（2026-10 出生，即对话中&quot;小宝&quot;）；双方父母年事渐高，有赡养与传承需求
+- 职业：家族企业二代，持有多家公司股权，本人参与家族投资平台管理；非金融专业背景
+- 沟通偏好：微信文字为主，明确要求&quot;讲通俗一点&quot;，不喜欢专业术语堆砌
+
+## 微信对话
+
+**【2026年11月8日 20:15】**
+
+**李女士**：小陈在吗？我想了解一下财富传承，听说家族信托可以？
+**小陈**：在的李女士。家族信托确实是做财富传承常用的工具，您这次是想先做个了解，还是已经有比较明确的想法了？
+**李女士**：先了解吧。我们家情况有点复杂，我老公那边是家族企业，股权、房产这些都有，我怕以后分不清楚、家里人闹矛盾，想提前安排好。
+**小陈**：理解。那我先按您的情况说个大概——家族信托的核心是把资产所有权和受益权分开，可以按您的意愿约定分配条件，比如孩子到什么年龄、什么情况下能拿到多少。
+**李女士**：对了，我上次做的那个风险测评，你们系统里是稳健型对吧？我这个人对投资不太懂，也不想冒太大风险。
+**小陈**：对，您 6 月做的测评是稳健型，25 分，明年 6 月到期前都有效。我给您做的方案都会控制在这个等级以内，超出我不会推。您放心。
+**李女士**：好，那我就放心了。我对信托了解不多，你讲得通俗一点哈，别整那些听不懂的词。
+**小陈**：好的，我尽量用大白话，回头整理一份说明发您。
+
+**【2026年11月12日 21:30】**
+
+**李女士**：小陈，还有个大喜事——我们家小宝上个月出生了😊
+**小陈**：恭喜恭喜！小宝是男孩女孩？
+**李女士**：女儿，可可爱了。这样一来我更得分明白了，以后得为她多打算，教育金、保障这些都要考虑进去。刚才说的信托，也希望能覆盖到她。
+**小陈**：明白。那我把需求捋一下：一是给小宝准备教育金和长期保障，二是家族资产的传承安排，三是您提到的避免家庭纠纷。这三块我一起给您做个综合规划。
+**李女士**：对对，就这个意思。还有我爸妈那边，年纪大了，我也想给他们做点安排，医疗、养老这些。
+**小陈**：都记下了。父母那块可以单独看看保险和医疗资源，跟信托是两套逻辑，我分开给您讲清楚。
+**李女士**：好，你整理好发我微信就行，我平时电话不太方便，孩子小，经常没空接。
+**小陈**：没问题，都微信沟通。方案里我会把产品要素和风险提示都写清楚，您慢慢看，有任何疑问随时问我。
+
+**【2026年11月14日 15:40】**
+
+**小陈**：李女士，传承那块的初步思路我整理好了，先发您看看。里面我用图示讲了信托的结构，应该比较好懂。
+**李女士**：[图片]
+**李女士**：收到！我看完有问题再问你。对了这个方案里的产品，都是你们建行的吧？
+**小陈**：都是我行的产品和服务，家族信托是我行做财务顾问、建信信托做受托人。每个产品我都标了来源和说明，您要是不放心可以自己核对。
+**李女士**：那就好，我就认建行的。谢谢小陈！
+
+【客户微信_张总.txt】
+# 客户微信_张总（化名）· 私行 5000 万以上层级 · 2026-11
+
+&gt; 教学示意，全部信息虚构脱敏。档案卡模拟客户经理从行内系统摘录、随聊天记录一并整理入档的客户背景信息。
+
+## 行内客户档案卡（系统摘录）
+
+- 客户编号：PB-2017-11***（脱敏）；客户经理：小陈
+- **私行等级**：5000 万以上（月日均金融资产 ≥ 5000 万，最高层级）
+- **AUM**：约 6800 万元；本行金融资产 5000 万，他行及证券、基金账户约 1800 万
+- **风险测评**：进取型（问卷 34 分，31–38 分区间）；测评日期 2026-08-20，**有效期至 2027-08-20**
+- 资产结构：权益类及基金约 3000 万、结构性存款及理财 1500 万、贵金属 500 万、企业股权及其他 1800 万
+- 家庭：已婚，配偶 42 岁，一子一女（均在国际学校就读）；家庭已设家族信托框架
+- 职业：科技公司创始人，企业已 Pre-IPO 轮，个人资产以股权为主，现金流波动较大
+- 沟通偏好：明确要求&quot;微信上说就行，别老打电话&quot;；关注流动性与贵金属，对市场热点敏感
+
+## 微信对话
+
+**【2026年11月15日 08:50】**
+
+**张总**：小陈，我有笔钱三个月内不用，想要流动性好、风险低一点的，有什么推荐？
+**小陈**：张总早。三个月的短期资金，稳健和流动性优先，我明白了。规模大概多少？
+**张总**：[语音]5
+**张总**：八百万左右，是公司账上暂时闲置的，三个月后要投一个新项目，不能锁死。
+**小陈**：明白，800 万、三个月、不能锁定。我看您风险测评是进取型，34 分，不过这笔钱您要的是稳和灵活，我按资金用途来配，不按测评上限推高风险，可以吧？
+**张总**：对，这笔求稳。我个人账户那部分另说，那部分可以激进点。
+
+**【2026年11月15日 09:12】**
+
+**张总**：对了，黄金最近涨得厉害，你们那个建行金还能买吗？我个人这块想配一点。
+**小陈**：建行金是我行的贵金属产品，我可以把公开资料和风险提示发您看看。不过黄金价格波动较大，您测评虽然是进取型，但贵金属我建议只做资产配置的一部分，别押太重。
+**张总**：嗯你发我看看。我平时工作忙，微信上说就行，别老打电话。
+**小陈**：好的，都微信沟通。我把流动性和黄金两块资料整理好发您，各自标了官网来源和日期。
+
+**【2026年11月15日 10:30】**
+
+**张总**：[图片]
+**张总**：这个是我基金经理发我的黄金分析，你帮我看看靠不靠谱？
+**小陈**：我看了，这是一篇市场观点，可以作为参考，但它不代表我行立场，也不构成投资建议。我给您配的我行官方风险提示一起看，两边对照。
+**张总**：行。那八百万那个短期方案，收益率大概多少？
+**小陈**：私行优享的结构性存款，官网公告的收益率区间我发您，有下限有上限，是浮动的不保证。具体以最新公告为准，我把链接标给您。
+**张总**：收到。还有——我两个孩子在读国际学校，明年大儿子也要出去，教育金这块你们有没有长期一点的方案？这块我可以接受锁五年。
+**小陈**：有，我单独整理一份长期教育金和美元配置的思路给您，这笔可以按您说的五年期限来配，跟短期那笔分开算。
+**张总**：好，一起发我。
+**小陈**：没问题。另外提一句，您上次测评是今年 8 月做的，明年 8 月到期，到时候如果风险偏好或资金情况变了，我提醒您重做一次。
+**张总**：[转账]2000:辛苦费
+**小陈**：张总这可使不得，费用我不能收，您心意我领了。
+**张总**：哈哈行吧。资料发我微信就行。
+
+三个文件创建完成后，用 llm-wiki-kit 技能把它们编译进 wiki/：为每位客户建画像页，标注来源与日期，更新 index.md 和 log.md，并告诉我结果。</pre>
+
+  <h3>② 真实微信自动归档（连真实微信时用这条）</h3>
+  <div class="phead"><span class="lbl">微信归档指令（复制）</span><button class="copy" data-t="p2" data-ask="clients">复制</button></div>
+  <pre id="p2">用电脑操作能力帮我归档微信聊天记录：
+
+【第一步：确认客户名单，仅在必要时询问】检查下面第二步里的客户名是否还是样例（王先生、李女士、张总）。若还是样例，说明尚未填入你的真实客户，请先问我："你微信里需要归档的客户分别叫什么名字？"等我回答后，用真实名字替换样例名再执行；若我在课堂上回答"用样例"，就按样例执行。若客户名已经是我的真实姓名（不是样例），则跳过询问，直接执行。
+
+【第二步：归档】
+1. 打开桌面已登录的微信，找到客户王先生、李女士、张总（以我实际给出的名字为准）的聊天窗口；
+2. 只读最近 30 天聊天记录，不要发送任何消息、不要改动微信里的任何数据；
+3. 客户姓名用化名、金额和账号脱敏，整理成纯文本；
+4. 分别保存到 知识库根目录\raw\客户微信\客户微信_<客户名>.txt 文件（每个客户一个文件）；
+5. 保存后用 llm-wiki-kit 技能把这些文件编译进 wiki/，并告诉我归档了哪些客户。
+如果找不到某位客户或无法登录微信，跳过该客户并如实告诉我，不要中断。</pre>
+  <div class="note amber"><b>如实说明</b>WorkBuddy 国内版没有个人微信官方连接器，个人微信只能走电脑操作；企业微信有官方连接器，更稳定。电脑操作全程只读，不发送任何消息。</div>
+
+  <h3>③ 自动抓取建行官网公开产品信息</h3>
+  <p>下面是建行官网真实公开链接（2026 年 11 月可访问），WorkBuddy 会自动打开、抓取、整理成文件。</p>
+  <table>
+    <tr><th>产品类型</th><th>建行官网公开页面</th></tr>
+    <tr><td>新产品发布公告（含私行优享结构性存款，最新）</td><td><a href="https://tool1.ccb.com/chn/finance/deposit_news/list_3776.shtml" target="_blank">官网公告列表</a></td></tr>
+    <tr><td>"利得盈"结构性存款 2026 年第174期（私行优享）</td><td><a href="https://tool1.ccb.com/chn/2026-11/24/article_2026112418081385687.shtml" target="_blank">官网公告</a></td></tr>
+    <tr><td>"乾元"系列理财产品介绍</td><td><a href="https://ccb.com/chn/2022-09/17/article_2022091713571324945.shtml" target="_blank">官网介绍</a></td></tr>
+    <tr><td>金融超市（建行金、代理保险入口）</td><td><a href="https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html" target="_blank">官网金融超市</a></td></tr>
+  </table>
+  <div class="phead"><span class="lbl">自动抓取产品信息（复制）</span><button class="copy" data-t="p2b">复制</button></div>
+  <pre id="p2b">请打开以下建行官网公开链接，读取页面上的产品名称、期限、风险等级、收益率区间等信息：
+https://tool1.ccb.com/chn/finance/deposit_news/list_3776.shtml
+https://tool1.ccb.com/chn/2026-11/24/article_2026112418081385687.shtml
+https://ccb.com/chn/2022-09/17/article_2022091713571324945.shtml
+https://www.ccb.com/cn/home/smallcom/market/include/finance_banner.html
+
+把抓到的信息整理成 知识库根目录\raw\行内产品资料\公开产品资料.md，每条产品保留官网链接和页面日期；页面没有的信息不要编造，写"官网未披露"。保存后用 llm-wiki-kit 技能编译进 wiki/。如果某个链接打不开，跳过并如实告诉我。</pre>
+  <div class="note green"><b>公开资料随便用</b>这些是建行官网公开信息，不涉及保密。学员也可以让自己找任何公开资料扔进 raw/，技能会自动归类入档。真实内部产品清单请替换为本机构版本。</div>
+</section>
+
+<section id="s4">
+  <h2><span class="n">4</span>自动编译 + 生成画像（15 分钟）</h2>
+  <div class="phead"><span class="lbl">一键编译并生成画像（复制）</span><button class="copy" data-t="p3">复制</button></div>
+  <pre id="p3">用 llm-wiki-kit 技能处理 raw/ 里的新资料：
+1. 把客户微信和产品资料编译进 wiki/，为每位客户建画像页、为每个产品建产品页；
+2. 基于这些资料，为王先生、李女士、张总各生成一份画像表格，字段：客户称谓（脱敏）、风险偏好与流动性、家庭/传承需求、沟通偏好、近期诉求、信息来源；
+3. 只写资料里明确提到的，没有的写"资料未提及"，不要编造；
+4. 把画像表格保存为 wiki/topics/客户画像汇总.md，并告诉我结果。</pre>
+  <div class="res"><b>预期结果（画像示意）：</b><br>
+  · <b>王先生</b>：不接受本金波动、期限半年内；儿子留学需美元；偏好微信；诉求为"乾元-私享"到期接续。<br>
+  · <b>李女士</b>：关注家族信托；上月新生儿需教育金保障；偏好微信、希望讲解通俗。<br>
+  · <b>张总</b>：风险低、流动性好、3个月内不用；咨询建行金；偏好微信、不希望常打电话。</div>
+  <div class="note blue"><b>增量更新也自动</b>以后客户发了新消息，只需让 WorkBuddy 把新对话存进 <code>raw/客户微信/</code>，技能会自动补充进画像；产品要素更新时技能自动保留新旧两版并提醒你确认，不用写冲突处理指令。</div>
+</section>
+
+<section id="s5">
+  <h2><span class="n">5</span>自动调用专家做产品推荐（15 分钟）</h2>
+  <p>一条 prompt 自动依次调用金融专家和营销专家，<b>不用你手动切换专家</b>。最后仍由你人工审核话术。</p>
+  <div class="phead"><span class="lbl">金融专家 + 营销专家一次跑完（复制）</span><button class="copy" data-t="p4">复制</button></div>
+  <pre id="p4">请依次完成以下两步，不要让我手动切换专家：
+
+【第一步：金融专家产品匹配】
+以金融专家身份，基于 wiki/ 里的客户画像和产品资料，为王先生做产品匹配：
+1. 只从 wiki/ 里已有的建行自有产品里选，不引入外部产品；
+2. 输出匹配度表格：产品名 / 是否符合风险偏好 / 是否符合期限 / 依据来源；
+3. 客户风险等级与产品风险等级不匹配的产品直接排除，不进入候选名单；
+4. 缺信息（如风险测评结果）就列出来让我补充，不要假设。
+
+【第二步：营销专家话术】
+在第一步结果基础上，以营销专家身份，为王先生写一段微信话术：
+1. 只用第一步确认的候选产品；
+2. 专业、克制，像一对一的客户经理，不要推销感；
+3. 先回应他关心的"利率下行、到期接续"，再自然引出产品；
+4. 收益只讲客观要素——期限和官网公布的年化区间，用"有下限保底"的说法，不要写"有下限有上限""收益浮动"这类表述；
+5. 只写已经确认或已经做到的事，不要写"我没动XX""我另外整理XX""我先查一下再回复您"这类还没做的动作；
+6. 话术里不要出现风险提示、免责声明、"不承诺保本保收益""以最新公告为准"这类字样；
+7. 200 字以内，结尾留一个开放式问题。</pre>
+  <div class="res"><b>话术示例（需人工审核）：</b><br>王先生您好，您提到利率还在降、那笔 500 万的乾元-私享 12 月中旬到期——我按您说的稳健、半年以内，先给您看建行"利得盈"私行优享最新一期：118 天，官网公告年化 0.65%—2.05%，收益有下限保底。您看这期期限，跟孩子这笔钱的安排对得上吗？</div>
+</section>
+
+<section id="s6">
+  <h2><span class="n">6</span>自动创建并验证定时任务（10 分钟）</h2>
+  <p>把下面的 prompt 复制发送，WorkBuddy 会<b>自己创建定时任务、自己立即跑一次验证</b>——你不用去"定时任务"页面手动新建、设时间、选目录、点立即执行。</p>
+  <div class="phead"><span class="lbl">自动创建定时任务 + 立即验证（复制）</span><button class="copy" data-t="p6" data-ask="clients">复制</button></div>
+  <pre id="p6">请帮我自动创建并验证一个定时任务，不要让我手动点击任何界面：
+
+【第一步：确认客户名单，与前面归档保持一致】先问我："前面归档时你用的是哪些客户？请再确认一次需要每日跟进的客户名单（多个用逗号隔开）。"等我回答后，用我确认的名字替换下面任务内容里的客户名。若我回答"用样例"，就沿用 王先生、李女士、张总。
+
+【第二步：创建并验证定时任务】
+1. 创建一个定时任务：名称"每日私行资料入库与画像更新"，执行频率每天 08:30，工作目录 知识库根目录，任务指令为下面【任务内容】的全部文字（客户名已按我确认的替换）；
+2. 创建后立即手动执行一次，验证是否能正常归档和编译，并把执行结果告诉我；
+3. 确认无误后保持任务启用状态。
+
+【任务内容】
+每天执行两步：
+1. 用电脑操作能力读取桌面微信指定客户（王先生、李女士、张总，以我确认的名字为准）最近 1 天的新消息，脱敏后保存到 知识库根目录\raw\客户微信\ 下的 .txt 文件（每个客户一个），只读不发送；读不到就跳过，不要报错中断；
+2. 用 llm-wiki-kit 技能把 raw/ 的新文件编译进 wiki/：新事实直接补充并记来源日期；产品要素变更自动保留新旧两版、记入 log.md，确认前不用于推荐；更新 index.md 和 log.md；
+3. 生成简短日报：今天新增了哪些资料、更新了哪些页面、有哪些待确认事项；
+4. raw/ 没有新文件时，什么都不用做。</pre>
+  <div class="res"><b>预期结果：</b>WorkBuddy 自动建好定时任务并当场跑一次给你看。之后每天早上自动归档微信、更新画像、生成待办清单。你只需看一眼"待确认事项"。</div>
+</section>
+
+<section id="s7">
+  <h2><span class="n">7</span>三条合规底线</h2>
+  <div class="note red"><b>1 · 脱敏</b>真实客户姓名、账号、金额必须脱敏后入库；客户数据只存本地，不上传、不同步公共盘。</div>
+  <div class="note red"><b>2 · 人工审核</b>AI 生成的话术、推荐必须逐句审核后才能发送。微信自动归档只读不发送。AI 只起草，不对外沟通。</div>
+  <div class="note red"><b>3 · 不承诺不夸大</b>不得承诺保本保收益；收益率以建行官方最新公告为准；风险不匹配一票否决。</div>
+  <div class="note blue"><b>跑通后的效果</b>整理一位客户资料从 30–40 分钟压缩到几分钟，每位客户都能有个性化触达内容。省下的时间用于面谈、转介绍和拓新客。</div>
+</section>
+
+</div>
+
+<div id="panel-chat" class="panel">
+  <div class="note blue"><b>这段怎么用</b>点顶部蓝色按钮 <b>📋 复制全部三段对话</b>，会一次性复制「三段对话全文 + 录入 LLM Wiki 的指令」，直接粘给 WorkBuddy 就能自动归档、建画像、一键处理；也可点每段右上角单独复制某一段。</div>
+  <button class="copy" data-t="w_all" id="copyallBtn" data-label="📋 复制全部三段对话" style="background:var(--blue);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:600;cursor:pointer;margin:4px 0 16px">📋 复制全部三段对话</button>
+  <pre id="w_all" class="hidden-pre"># 客户微信_王先生（化名）· 私行 C3 级 · 2026-11
+
+&gt; 教学示意，全部信息虚构脱敏。档案卡模拟客户经理从行内系统摘录、随聊天记录一并整理入档的客户背景信息。
+
+## 行内客户档案卡（系统摘录）
+
+- 客户编号：PB-2021-08***（脱敏）；客户经理：小陈
+- **私行等级**：C3 级（月日均金融资产 1000 万 ≤ AUM &lt; 2000 万）
+- **AUM**：约 1500 万元；本行金融资产：1400 万，他行约 100 万
+- **风险测评**：稳健型（问卷 27 分，21–30 分区间）；测评日期 2026-03-18，**有效期至 2027-03-18**
+- 资产结构：稳健类理财约 800 万（含&quot;乾元-私享&quot;500 万，2026-12 到期）、大额存单 400 万、活期及货币类 300 万
+- 家庭：已婚，配偶 45 岁（全职），一子 17 岁，计划明年赴美留学
+- 职业：某精密制造企业创始人兼董事长，企业年营收约 2 亿，公司股权为其主要资产来源
+- 沟通偏好：微信文字为主，工作繁忙，极少接电话；对&quot;本金安全&quot;高度敏感
+
+## 微信对话
+
+**【2026年11月3日 09:42】**
+
+**小陈**：王先生早上好，好久没联系了，最近公司忙吗？
+**王先生**：还行，年底冲业绩，忙得很。小陈，我那笔&quot;乾元-私享&quot;下个月 12 号到期了，最近看新闻说利率还要降，有没有稳一点的产品接上？
+**小陈**：有的。您这笔到期的是 500 万对吧？我按您上次测评的稳健型来匹配——您问卷是 27 分稳健型，还在有效期内，我就按这个等级选，不往上推风险。
+**王先生**：对，500 万。稳健就行，我这个钱是给儿子留的，本金不能有闪失。
+**小陈**：明白。除了这笔到期资金，您整体资金最近有别的安排吗？我看您账上还有一部分活期。
+**王先生**：活期那 300 万是随时要用的，别动。另外我儿子明年出国留学，要准备一笔美元，大概 50 万美元等值，这个可能要放到明年上半年。
+
+**【2026年11月5日 14:18】**
+
+**王先生**：小陈，我再补充几点。第一，我不太能接受本金波动，稳健第一；第二，期限最好半年以内，留学用钱时间卡得比较紧；第三，美元那部分希望能换个渠道安排，别都放人民币。
+**小陈**：都记下了：稳健优先、半年以内、美元单独安排。您对收益大概什么预期？我好把握尺度。
+**王先生**：我不贪高，年化能到 2% 出头、比活期强就行，关键是稳、随时能取。你们那个结构性存款我看新闻提到过，是保本的吗？
+**小陈**：结构性存款和普通存款不一样，收益是浮动的，有下限也有上限，我把官网的公开说明和风险提示发您，您看完我们再定。任何产品我都不会跟您说&quot;保本保收益&quot;。
+**王先生**：[语音]8
+**王先生**：行，你发我看。对了，我太太那边也有一点钱，是她自己管的，改天我也让她跟你聊聊。
+**小陈**：好的，随时欢迎。您把她拉个群或者约个时间都行。
+
+**【2026年11月6日 10:05】**
+
+**小陈**：王先生，资料整理好了发您。这是建行官网公开的产品说明，我标了链接和页面日期，具体要素以最新公告为准。
+**王先生**：[图片]
+**小陈**：这份是&quot;利得盈&quot;私行优享结构性存款的公告，期限和起点都写在里面。您重点看风险提示那一栏。
+**王先生**：收到，我看完回复你。还有个事——我儿子明年出去，留学那笔钱我想提前规划，你们有没有那种教育金或者美元的产品？
+**小陈**：有，我回头单独整理一份美元和跨境的配置思路给您，这个要跟您的留学时间点对上，我们慢慢捋。
+**王先生**：好，不急，你整理好发微信就行。我平时开会多，电话经常不方便接。
+**小陈**:明白，都微信沟通。我把方案和风险提示写清楚发您。
+
+——————————————————————————————
+
+# 客户微信_李女士（化名）· 私行 V 级 · 2026-11
+
+&gt; 教学示意，全部信息虚构脱敏。档案卡模拟客户经理从行内系统摘录、随聊天记录一并整理入档的客户背景信息。
+
+## 行内客户档案卡（系统摘录）
+
+- 客户编号：PB-2019-03***（脱敏）；客户经理：小陈
+- **私行等级**：V 级（月日均金融资产 2000 万 ≤ AUM &lt; 5000 万）
+- **AUM**：约 3200 万元；本行金融资产 2800 万，他行及证券账户约 400 万
+- **风险测评**：稳健型（问卷 25 分，21–30 分区间）；测评日期 2026-06-02，**有效期至 2027-06-02**
+- 资产结构：中长期理财约 1200 万、家族信托 1000 万（已设立）、保险 300 万、现金及货币类 700 万
+- 家庭：已婚，配偶 48 岁（某企业股东），育有一女（2026-10 出生，即对话中&quot;小宝&quot;）；双方父母年事渐高，有赡养与传承需求
+- 职业：家族企业二代，持有多家公司股权，本人参与家族投资平台管理；非金融专业背景
+- 沟通偏好：微信文字为主，明确要求&quot;讲通俗一点&quot;，不喜欢专业术语堆砌
+
+## 微信对话
+
+**【2026年11月8日 20:15】**
+
+**李女士**：小陈在吗？我想了解一下财富传承，听说家族信托可以？
+**小陈**：在的李女士。家族信托确实是做财富传承常用的工具，您这次是想先做个了解，还是已经有比较明确的想法了？
+**李女士**：先了解吧。我们家情况有点复杂，我老公那边是家族企业，股权、房产这些都有，我怕以后分不清楚、家里人闹矛盾，想提前安排好。
+**小陈**：理解。那我先按您的情况说个大概——家族信托的核心是把资产所有权和受益权分开，可以按您的意愿约定分配条件，比如孩子到什么年龄、什么情况下能拿到多少。
+**李女士**：对了，我上次做的那个风险测评，你们系统里是稳健型对吧？我这个人对投资不太懂，也不想冒太大风险。
+**小陈**：对，您 6 月做的测评是稳健型，25 分，明年 6 月到期前都有效。我给您做的方案都会控制在这个等级以内，超出我不会推。您放心。
+**李女士**：好，那我就放心了。我对信托了解不多，你讲得通俗一点哈，别整那些听不懂的词。
+**小陈**：好的，我尽量用大白话，回头整理一份说明发您。
+
+**【2026年11月12日 21:30】**
+
+**李女士**：小陈，还有个大喜事——我们家小宝上个月出生了😊
+**小陈**：恭喜恭喜！小宝是男孩女孩？
+**李女士**：女儿，可可爱了。这样一来我更得分明白了，以后得为她多打算，教育金、保障这些都要考虑进去。刚才说的信托，也希望能覆盖到她。
+**小陈**：明白。那我把需求捋一下：一是给小宝准备教育金和长期保障，二是家族资产的传承安排，三是您提到的避免家庭纠纷。这三块我一起给您做个综合规划。
+**李女士**：对对，就这个意思。还有我爸妈那边，年纪大了，我也想给他们做点安排，医疗、养老这些。
+**小陈**：都记下了。父母那块可以单独看看保险和医疗资源，跟信托是两套逻辑，我分开给您讲清楚。
+**李女士**：好，你整理好发我微信就行，我平时电话不太方便，孩子小，经常没空接。
+**小陈**：没问题，都微信沟通。方案里我会把产品要素和风险提示都写清楚，您慢慢看，有任何疑问随时问我。
+
+**【2026年11月14日 15:40】**
+
+**小陈**：李女士，传承那块的初步思路我整理好了，先发您看看。里面我用图示讲了信托的结构，应该比较好懂。
+**李女士**：[图片]
+**李女士**：收到！我看完有问题再问你。对了这个方案里的产品，都是你们建行的吧？
+**小陈**：都是我行的产品和服务，家族信托是我行做财务顾问、建信信托做受托人。每个产品我都标了来源和说明，您要是不放心可以自己核对。
+**李女士**：那就好，我就认建行的。谢谢小陈！
+
+——————————————————————————————
+
+# 客户微信_张总（化名）· 私行 5000 万以上层级 · 2026-11
+
+&gt; 教学示意，全部信息虚构脱敏。档案卡模拟客户经理从行内系统摘录、随聊天记录一并整理入档的客户背景信息。
+
+## 行内客户档案卡（系统摘录）
+
+- 客户编号：PB-2017-11***（脱敏）；客户经理：小陈
+- **私行等级**：5000 万以上（月日均金融资产 ≥ 5000 万，最高层级）
+- **AUM**：约 6800 万元；本行金融资产 5000 万，他行及证券、基金账户约 1800 万
+- **风险测评**：进取型（问卷 34 分，31–38 分区间）；测评日期 2026-08-20，**有效期至 2027-08-20**
+- 资产结构：权益类及基金约 3000 万、结构性存款及理财 1500 万、贵金属 500 万、企业股权及其他 1800 万
+- 家庭：已婚，配偶 42 岁，一子一女（均在国际学校就读）；家庭已设家族信托框架
+- 职业：科技公司创始人，企业已 Pre-IPO 轮，个人资产以股权为主，现金流波动较大
+- 沟通偏好：明确要求&quot;微信上说就行，别老打电话&quot;；关注流动性与贵金属，对市场热点敏感
+
+## 微信对话
+
+**【2026年11月15日 08:50】**
+
+**张总**：小陈，我有笔钱三个月内不用，想要流动性好、风险低一点的，有什么推荐？
+**小陈**：张总早。三个月的短期资金，稳健和流动性优先，我明白了。规模大概多少？
+**张总**：[语音]5
+**张总**：八百万左右，是公司账上暂时闲置的，三个月后要投一个新项目，不能锁死。
+**小陈**：明白，800 万、三个月、不能锁定。我看您风险测评是进取型，34 分，不过这笔钱您要的是稳和灵活，我按资金用途来配，不按测评上限推高风险，可以吧？
+**张总**：对，这笔求稳。我个人账户那部分另说，那部分可以激进点。
+
+**【2026年11月15日 09:12】**
+
+**张总**：对了，黄金最近涨得厉害，你们那个建行金还能买吗？我个人这块想配一点。
+**小陈**：建行金是我行的贵金属产品，我可以把公开资料和风险提示发您看看。不过黄金价格波动较大，您测评虽然是进取型，但贵金属我建议只做资产配置的一部分，别押太重。
+**张总**：嗯你发我看看。我平时工作忙，微信上说就行，别老打电话。
+**小陈**：好的，都微信沟通。我把流动性和黄金两块资料整理好发您，各自标了官网来源和日期。
+
+**【2026年11月15日 10:30】**
+
+**张总**：[图片]
+**张总**：这个是我基金经理发我的黄金分析，你帮我看看靠不靠谱？
+**小陈**：我看了，这是一篇市场观点，可以作为参考，但它不代表我行立场，也不构成投资建议。我给您配的我行官方风险提示一起看，两边对照。
+**张总**：行。那八百万那个短期方案，收益率大概多少？
+**小陈**：私行优享的结构性存款，官网公告的收益率区间我发您，有下限有上限，是浮动的不保证。具体以最新公告为准，我把链接标给您。
+**张总**：收到。还有——我两个孩子在读国际学校，明年大儿子也要出去，教育金这块你们有没有长期一点的方案？这块我可以接受锁五年。
+**小陈**：有，我单独整理一份长期教育金和美元配置的思路给您，这笔可以按您说的五年期限来配，跟短期那笔分开算。
+**张总**：好，一起发我。
+**小陈**：没问题。另外提一句，您上次测评是今年 8 月做的，明年 8 月到期，到时候如果风险偏好或资金情况变了，我提醒您重做一次。
+**张总**：[转账]2000:辛苦费
+**小陈**：张总这可使不得，费用我不能收，您心意我领了。
+**张总**：哈哈行吧。资料发我微信就行。
+
+
+
+
+==================================================
+
+【请把上面的对话录入 LLM Wiki 知识库（复制本段即可一键处理）】
+
+请用 llm-wiki-kit 技能，把上面三段客户微信对话归档并编译进知识库：
+1. 在 知识库根目录 下的 raw\客户微信\ 中，把三位客户的对话分别存为 客户微信_王先生.txt、客户微信_李女士.txt、客户微信_张总.txt（每位客户一个文件，内容就是上面各自的对话全文，含档案卡）。
+2. 这些是脱敏教学样例，不要读取或修改真实微信数据。
+3. 用技能把这三个文件编译进 wiki/：为每位客户建画像页，提炼私行等级、AUM、风险测评与有效期、家庭与职业背景、产品需求与沟通偏好；每条事实标注来源文件和日期；更新 index.md 和 log.md。
+4. 完成后告诉我：归档了哪几位客户、生成了哪些画像页、以及每位客户的信息缺口。
+</pre>
+  <div class="chatcard">
+  <h3>客户微信 · 王先生</h3>
+  <div class="meta">私行 C3 级 · 约 1500 万 · 稳健型 27 分 · 制造业主</div>
+  <div class="phead"><span class="lbl">微信对话（纯文本）</span><button class="copy" data-t="w_wang" data-label="复制这段对话">复制这段对话</button></div>
+  <pre id="w_wang"># 客户微信_王先生（化名）· 私行 C3 级 · 2026-11
+
+&gt; 教学示意，全部信息虚构脱敏。档案卡模拟客户经理从行内系统摘录、随聊天记录一并整理入档的客户背景信息。
+
+## 行内客户档案卡（系统摘录）
+
+- 客户编号：PB-2021-08***（脱敏）；客户经理：小陈
+- **私行等级**：C3 级（月日均金融资产 1000 万 ≤ AUM &lt; 2000 万）
+- **AUM**：约 1500 万元；本行金融资产：1400 万，他行约 100 万
+- **风险测评**：稳健型（问卷 27 分，21–30 分区间）；测评日期 2026-03-18，**有效期至 2027-03-18**
+- 资产结构：稳健类理财约 800 万（含&quot;乾元-私享&quot;500 万，2026-12 到期）、大额存单 400 万、活期及货币类 300 万
+- 家庭：已婚，配偶 45 岁（全职），一子 17 岁，计划明年赴美留学
+- 职业：某精密制造企业创始人兼董事长，企业年营收约 2 亿，公司股权为其主要资产来源
+- 沟通偏好：微信文字为主，工作繁忙，极少接电话；对&quot;本金安全&quot;高度敏感
+
+## 微信对话
+
+**【2026年11月3日 09:42】**
+
+**小陈**：王先生早上好，好久没联系了，最近公司忙吗？
+**王先生**：还行，年底冲业绩，忙得很。小陈，我那笔&quot;乾元-私享&quot;下个月 12 号到期了，最近看新闻说利率还要降，有没有稳一点的产品接上？
+**小陈**：有的。您这笔到期的是 500 万对吧？我按您上次测评的稳健型来匹配——您问卷是 27 分稳健型，还在有效期内，我就按这个等级选，不往上推风险。
+**王先生**：对，500 万。稳健就行，我这个钱是给儿子留的，本金不能有闪失。
+**小陈**：明白。除了这笔到期资金，您整体资金最近有别的安排吗？我看您账上还有一部分活期。
+**王先生**：活期那 300 万是随时要用的，别动。另外我儿子明年出国留学，要准备一笔美元，大概 50 万美元等值，这个可能要放到明年上半年。
+
+**【2026年11月5日 14:18】**
+
+**王先生**：小陈，我再补充几点。第一，我不太能接受本金波动，稳健第一；第二，期限最好半年以内，留学用钱时间卡得比较紧；第三，美元那部分希望能换个渠道安排，别都放人民币。
+**小陈**：都记下了：稳健优先、半年以内、美元单独安排。您对收益大概什么预期？我好把握尺度。
+**王先生**：我不贪高，年化能到 2% 出头、比活期强就行，关键是稳、随时能取。你们那个结构性存款我看新闻提到过，是保本的吗？
+**小陈**：结构性存款和普通存款不一样，收益是浮动的，有下限也有上限，我把官网的公开说明和风险提示发您，您看完我们再定。任何产品我都不会跟您说&quot;保本保收益&quot;。
+**王先生**：[语音]8
+**王先生**：行，你发我看。对了，我太太那边也有一点钱，是她自己管的，改天我也让她跟你聊聊。
+**小陈**：好的，随时欢迎。您把她拉个群或者约个时间都行。
+
+**【2026年11月6日 10:05】**
+
+**小陈**：王先生，资料整理好了发您。这是建行官网公开的产品说明，我标了链接和页面日期，具体要素以最新公告为准。
+**王先生**：[图片]
+**小陈**：这份是&quot;利得盈&quot;私行优享结构性存款的公告，期限和起点都写在里面。您重点看风险提示那一栏。
+**王先生**：收到，我看完回复你。还有个事——我儿子明年出去，留学那笔钱我想提前规划，你们有没有那种教育金或者美元的产品？
+**小陈**：有，我回头单独整理一份美元和跨境的配置思路给您，这个要跟您的留学时间点对上，我们慢慢捋。
+**王先生**：好，不急，你整理好发微信就行。我平时开会多，电话经常不方便接。
+**小陈**:明白，都微信沟通。我把方案和风险提示写清楚发您。
+</pre>
+</div>
+<div class="chatcard">
+  <h3>客户微信 · 李女士</h3>
+  <div class="meta">私行 V 级 · 约 3200 万 · 稳健型 25 分 · 家族企业二代</div>
+  <div class="phead"><span class="lbl">微信对话（纯文本）</span><button class="copy" data-t="w_li" data-label="复制这段对话">复制这段对话</button></div>
+  <pre id="w_li"># 客户微信_李女士（化名）· 私行 V 级 · 2026-11
+
+&gt; 教学示意，全部信息虚构脱敏。档案卡模拟客户经理从行内系统摘录、随聊天记录一并整理入档的客户背景信息。
+
+## 行内客户档案卡（系统摘录）
+
+- 客户编号：PB-2019-03***（脱敏）；客户经理：小陈
+- **私行等级**：V 级（月日均金融资产 2000 万 ≤ AUM &lt; 5000 万）
+- **AUM**：约 3200 万元；本行金融资产 2800 万，他行及证券账户约 400 万
+- **风险测评**：稳健型（问卷 25 分，21–30 分区间）；测评日期 2026-06-02，**有效期至 2027-06-02**
+- 资产结构：中长期理财约 1200 万、家族信托 1000 万（已设立）、保险 300 万、现金及货币类 700 万
+- 家庭：已婚，配偶 48 岁（某企业股东），育有一女（2026-10 出生，即对话中&quot;小宝&quot;）；双方父母年事渐高，有赡养与传承需求
+- 职业：家族企业二代，持有多家公司股权，本人参与家族投资平台管理；非金融专业背景
+- 沟通偏好：微信文字为主，明确要求&quot;讲通俗一点&quot;，不喜欢专业术语堆砌
+
+## 微信对话
+
+**【2026年11月8日 20:15】**
+
+**李女士**：小陈在吗？我想了解一下财富传承，听说家族信托可以？
+**小陈**：在的李女士。家族信托确实是做财富传承常用的工具，您这次是想先做个了解，还是已经有比较明确的想法了？
+**李女士**：先了解吧。我们家情况有点复杂，我老公那边是家族企业，股权、房产这些都有，我怕以后分不清楚、家里人闹矛盾，想提前安排好。
+**小陈**：理解。那我先按您的情况说个大概——家族信托的核心是把资产所有权和受益权分开，可以按您的意愿约定分配条件，比如孩子到什么年龄、什么情况下能拿到多少。
+**李女士**：对了，我上次做的那个风险测评，你们系统里是稳健型对吧？我这个人对投资不太懂，也不想冒太大风险。
+**小陈**：对，您 6 月做的测评是稳健型，25 分，明年 6 月到期前都有效。我给您做的方案都会控制在这个等级以内，超出我不会推。您放心。
+**李女士**：好，那我就放心了。我对信托了解不多，你讲得通俗一点哈，别整那些听不懂的词。
+**小陈**：好的，我尽量用大白话，回头整理一份说明发您。
+
+**【2026年11月12日 21:30】**
+
+**李女士**：小陈，还有个大喜事——我们家小宝上个月出生了😊
+**小陈**：恭喜恭喜！小宝是男孩女孩？
+**李女士**：女儿，可可爱了。这样一来我更得分明白了，以后得为她多打算，教育金、保障这些都要考虑进去。刚才说的信托，也希望能覆盖到她。
+**小陈**：明白。那我把需求捋一下：一是给小宝准备教育金和长期保障，二是家族资产的传承安排，三是您提到的避免家庭纠纷。这三块我一起给您做个综合规划。
+**李女士**：对对，就这个意思。还有我爸妈那边，年纪大了，我也想给他们做点安排，医疗、养老这些。
+**小陈**：都记下了。父母那块可以单独看看保险和医疗资源，跟信托是两套逻辑，我分开给您讲清楚。
+**李女士**：好，你整理好发我微信就行，我平时电话不太方便，孩子小，经常没空接。
+**小陈**：没问题，都微信沟通。方案里我会把产品要素和风险提示都写清楚，您慢慢看，有任何疑问随时问我。
+
+**【2026年11月14日 15:40】**
+
+**小陈**：李女士，传承那块的初步思路我整理好了，先发您看看。里面我用图示讲了信托的结构，应该比较好懂。
+**李女士**：[图片]
+**李女士**：收到！我看完有问题再问你。对了这个方案里的产品，都是你们建行的吧？
+**小陈**：都是我行的产品和服务，家族信托是我行做财务顾问、建信信托做受托人。每个产品我都标了来源和说明，您要是不放心可以自己核对。
+**李女士**：那就好，我就认建行的。谢谢小陈！
+</pre>
+</div>
+<div class="chatcard">
+  <h3>客户微信 · 张总</h3>
+  <div class="meta">5000 万以上层级 · 约 6800 万 · 进取型 34 分 · 科技公司创始人</div>
+  <div class="phead"><span class="lbl">微信对话（纯文本）</span><button class="copy" data-t="w_zhang" data-label="复制这段对话">复制这段对话</button></div>
+  <pre id="w_zhang"># 客户微信_张总（化名）· 私行 5000 万以上层级 · 2026-11
+
+&gt; 教学示意，全部信息虚构脱敏。档案卡模拟客户经理从行内系统摘录、随聊天记录一并整理入档的客户背景信息。
+
+## 行内客户档案卡（系统摘录）
+
+- 客户编号：PB-2017-11***（脱敏）；客户经理：小陈
+- **私行等级**：5000 万以上（月日均金融资产 ≥ 5000 万，最高层级）
+- **AUM**：约 6800 万元；本行金融资产 5000 万，他行及证券、基金账户约 1800 万
+- **风险测评**：进取型（问卷 34 分，31–38 分区间）；测评日期 2026-08-20，**有效期至 2027-08-20**
+- 资产结构：权益类及基金约 3000 万、结构性存款及理财 1500 万、贵金属 500 万、企业股权及其他 1800 万
+- 家庭：已婚，配偶 42 岁，一子一女（均在国际学校就读）；家庭已设家族信托框架
+- 职业：科技公司创始人，企业已 Pre-IPO 轮，个人资产以股权为主，现金流波动较大
+- 沟通偏好：明确要求&quot;微信上说就行，别老打电话&quot;；关注流动性与贵金属，对市场热点敏感
+
+## 微信对话
+
+**【2026年11月15日 08:50】**
+
+**张总**：小陈，我有笔钱三个月内不用，想要流动性好、风险低一点的，有什么推荐？
+**小陈**：张总早。三个月的短期资金，稳健和流动性优先，我明白了。规模大概多少？
+**张总**：[语音]5
+**张总**：八百万左右，是公司账上暂时闲置的，三个月后要投一个新项目，不能锁死。
+**小陈**：明白，800 万、三个月、不能锁定。我看您风险测评是进取型，34 分，不过这笔钱您要的是稳和灵活，我按资金用途来配，不按测评上限推高风险，可以吧？
+**张总**：对，这笔求稳。我个人账户那部分另说，那部分可以激进点。
+
+**【2026年11月15日 09:12】**
+
+**张总**：对了，黄金最近涨得厉害，你们那个建行金还能买吗？我个人这块想配一点。
+**小陈**：建行金是我行的贵金属产品，我可以把公开资料和风险提示发您看看。不过黄金价格波动较大，您测评虽然是进取型，但贵金属我建议只做资产配置的一部分，别押太重。
+**张总**：嗯你发我看看。我平时工作忙，微信上说就行，别老打电话。
+**小陈**：好的，都微信沟通。我把流动性和黄金两块资料整理好发您，各自标了官网来源和日期。
+
+**【2026年11月15日 10:30】**
+
+**张总**：[图片]
+**张总**：这个是我基金经理发我的黄金分析，你帮我看看靠不靠谱？
+**小陈**：我看了，这是一篇市场观点，可以作为参考，但它不代表我行立场，也不构成投资建议。我给您配的我行官方风险提示一起看，两边对照。
+**张总**：行。那八百万那个短期方案，收益率大概多少？
+**小陈**：私行优享的结构性存款，官网公告的收益率区间我发您，有下限有上限，是浮动的不保证。具体以最新公告为准，我把链接标给您。
+**张总**：收到。还有——我两个孩子在读国际学校，明年大儿子也要出去，教育金这块你们有没有长期一点的方案？这块我可以接受锁五年。
+**小陈**：有，我单独整理一份长期教育金和美元配置的思路给您，这笔可以按您说的五年期限来配，跟短期那笔分开算。
+**张总**：好，一起发我。
+**小陈**：没问题。另外提一句，您上次测评是今年 8 月做的，明年 8 月到期，到时候如果风险偏好或资金情况变了，我提醒您重做一次。
+**张总**：[转账]2000:辛苦费
+**小陈**：张总这可使不得，费用我不能收，您心意我领了。
+**张总**：哈哈行吧。资料发我微信就行。
+</pre>
+</div>
+  <div class="note amber"><b>脱敏说明</b>三段对话均为虚构教学示例，姓名、金额、企业信息全部脱敏，不涉及任何真实客户数据。</div>
+</div>
+</div>
+<footer>建行私行客户经理培训 · 基础实操手册　|　客户数据为虚构教学示例，产品信息来自建行公开渠道，不构成投资建议</footer>
+
+<div id="askModal" class="modal-mask">
+  <div class="modal-box">
+    <h3 id="askTitle">填写你微信里的客户名字</h3>
+    <p id="askDesc">学员没有样例里的这些客户。请输入<b>你自己微信里真实的客户名字</b>（多个用逗号隔开），复制时会自动写进指令——agent 收到后就会按你填的名字去归档，不会再拿样例名来找。</p>
+    <input id="askInput" type="text" value="王先生,李女士,张总" placeholder="例如：王先生,李女士,张总">
+    <div class="modal-btns">
+      <button id="askCancel">取消</button>
+      <button id="askOk" class="ok">确定并复制</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  function flash(btn,text,ok){if(!btn.dataset.label)btn.dataset.label=btn.textContent;btn.textContent=text;btn.classList.toggle('done',!!ok);setTimeout(function(){btn.textContent=btn.dataset.label;btn.classList.remove('done')},1800)}
+  function selectPre(el){try{var r=document.createRange();r.selectNodeContents(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r)}catch(e){}}
+  function legacyCopy(text,btn){
+    var a=document.createElement('textarea');a.value=text;a.setAttribute('readonly','');
+    a.style.position='fixed';a.style.top='-1000px';a.style.opacity='0';
+    document.body.appendChild(a);a.select();a.setSelectionRange(0,a.value.length);
+    var ok=false;try{ok=document.execCommand('copy')}catch(e){ok=false}
+    document.body.removeChild(a);
+    if(ok){flash(btn,'已复制',true)}
+    else{var pre=document.getElementById(btn.getAttribute('data-t'));if(pre)selectPre(pre);flash(btn,'已选中·按Ctrl+C',false)}
+  }
+  function doCopy(btn,text){
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){flash(btn,'已复制',true)},function(){legacyCopy(text,btn)});
+    }else{legacyCopy(text,btn)}
+  }
+  var pendingBtn=null;
+  var modal=document.getElementById('askModal'),askInput=document.getElementById('askInput');
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var el=document.getElementById(btn.getAttribute('data-t'));if(!el)return;
+      if(btn.getAttribute('data-ask')==='clients'){
+        pendingBtn=btn;
+        var isP6=btn.getAttribute('data-t')==='p6';
+        var title=document.getElementById('askTitle'),desc=document.getElementById('askDesc');
+        if(title)title.textContent=isP6?'确认每日跟进的客户名单':'填写你微信里的客户名字';
+        if(desc)desc.innerHTML=isP6
+          ?'请<b>再确认一次</b>与前面归档时一致的客户名单（多个用逗号隔开），定时任务会按这些客户每日跟进。'
+          :'学员没有样例里的这些客户。请输入<b>你自己微信里真实的客户名字</b>（多个用逗号隔开），复制时会自动写进指令——agent 收到后就会按你填的名字去归档，不会再拿样例名来找。';
+        if(modal){modal.classList.add('show');askInput.focus();askInput.select()}
+        return;
+      }
+      doCopy(btn,el.textContent);
+    });
+  });
+  // 询问弹窗：把学员输入的客户名替换进 p2 指令
+  var askOk=document.getElementById('askOk'),askCancel=document.getElementById('askCancel');
+  if(askOk)askOk.addEventListener('click',function(){
+    modal.classList.remove('show');
+    var raw=askInput.value.trim()||'王先生,李女士,张总';
+    var names=raw.split(/[,，、\s]+/).filter(function(x){return x.length>0});
+    var el=document.getElementById(pendingBtn.getAttribute('data-t'));
+    var text=el.textContent;
+    var nameStr=names.join('、')||'王先生、李女士、张总';
+    var which=pendingBtn.getAttribute('data-t');
+    if(which==='p2'){
+      // p2 归档：标记名单已填好，替换客户名与文件名
+      text=text.replace(/【第一步：确认客户名单，仅在必要时询问】[\s\S]*?(?=【第二步：归档】)/,
+        '【第一步：客户名单】已在复制时填好，客户为：'+nameStr+'。直接执行第二步，不要再次询问。\n\n');
+      text=text.replace('客户王先生、李女士、张总（以我实际给出的名字为准）','客户'+nameStr);
+    }else if(which==='p6'){
+      // p6 定时任务：标记名单已确认，替换客户名
+      text=text.replace(/【第一步：确认客户名单，与前面归档保持一致】[\s\S]*?(?=【第二步：创建并验证定时任务】)/,
+        '【第一步：客户名单】已与学员确认，客户为：'+nameStr+'。直接执行第二步，不要再次询问。\n\n');
+      text=text.replace('客户（王先生、李女士、张总，以我确认的名字为准）','客户（'+nameStr+'）');
+    }
+    // 通用替换文件名占位符
+    text=text.replace('客户微信_<客户名>.txt','客户微信_'+(names[0]||'王先生')+'.txt');
+    text=text.replace('客户微信_王先生.txt','客户微信_'+(names[0]||'王先生')+'.txt');
+    doCopy(pendingBtn,text);
+  });
+  if(askCancel)askCancel.addEventListener('click',function(){modal.classList.remove('show')});
+  if(modal)modal.addEventListener('click',function(e){if(e.target===modal)modal.classList.remove('show')});
+})();
+(function(){
+  var steps=[].slice.call(document.querySelectorAll('.pstep'));
+  var secs=steps.map(function(st){return document.getElementById(st.getAttribute('data-step'))});
+  function update(){
+    var cur=0;
+    secs.forEach(function(sec,i){if(sec&&sec.getBoundingClientRect().top<=window.innerHeight*0.45)cur=i});
+    steps.forEach(function(st,i){
+      st.classList.toggle('done',i<cur);
+      st.classList.toggle('active',i===cur);
+      st.querySelector('.pdot').textContent=i<cur?'✓':(i+1);
+    });
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+  update();
+})();
+
+// 页签切换
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});
+    this.classList.add('active');
+    var target=document.getElementById(this.getAttribute('data-panel'));
+    if(target)target.classList.add('active');
+    window.scrollTo(0,0);
+  });
+});
+</script>
+</body>
+</html>
