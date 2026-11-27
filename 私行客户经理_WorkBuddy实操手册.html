@@ -99,14 +99,14 @@ pre{font-size:14px;line-height:1.65;overflow-wrap:anywhere}.chatcard pre{font-si
 .teach-tag[data-kind=skill]{background:#f3edfc;color:#5d3583;border-color:#c9b8df}
 .teach-tag[data-kind=role]{background:#e8f2fb;color:#004b87;border-color:#a7cce9}
 .teach-tag[data-kind=tool]{background:#fff1df;color:#784701;border-color:#d8b98d}
-.teach-tag[aria-pressed=true]{outline:2px solid currentColor;outline-offset:1px}
 .teach-tag:focus-visible{outline:3px solid #145b9d;outline-offset:3px}
-.teach-note{margin:8px 0 0;min-height:1.5em;color:#40536a;font-size:14px;overflow-wrap:anywhere}
-.teach-keyword{border-radius:3px;text-decoration:underline;text-underline-offset:.18em;cursor:help}
+.teach-keyword{border-radius:3px;text-decoration:underline dotted;text-underline-offset:.2em;cursor:help}
 .teach-keyword[data-kind=skill]{color:#5d3583;background:#f3edfc}
 .teach-keyword[data-kind=role]{color:#004b87;background:#e8f2fb}
 .teach-keyword[data-kind=tool]{color:#784701;background:#fff1df}
-@media print{.teach-labels{break-inside:avoid}}
+.term-box{position:fixed;z-index:1000;width:max-content;max-width:min(300px,calc(100vw - 24px));padding:10px 13px;border:1px solid #b8cce0;border-radius:8px;background:#fff;box-shadow:0 6px 24px #1537592b;color:#263c54;font-size:14px;line-height:1.55;overflow-wrap:anywhere;user-select:text}
+.term-box strong{display:block;margin-bottom:2px;color:#004b87;font-size:14px}
+@media print{.teach-labels{break-inside:avoid}.term-box{display:none!important}}
 
 </style></head><body>
 <header><div class="eyebrow">私人银行客户经理培训 · 课堂虚构材料</div><h1>WorkBuddy + LLM Wiki 基础实操手册</h1><p>七步跟做：准备 → 建库 → 保存材料 → 编译画像 → 比条件写草稿 → 定时试跑 → 核对使用边界</p></header>
@@ -114,7 +114,7 @@ pre{font-size:14px;line-height:1.65;overflow-wrap:anywhere}.chatcard pre{font-si
 <div class="tabs" role="tablist" aria-label="手册与样例"><button id="tab-manual" class="tab active" data-panel="panel-manual" role="tab" aria-controls="panel-manual" aria-selected="true">操作手册</button><button id="tab-chat" class="tab" data-panel="panel-chat" role="tab" aria-controls="panel-chat" aria-selected="false" tabindex="-1">客户对话样例</button></div>
 <div id="panel-manual" class="panel active" role="tabpanel" aria-labelledby="tab-manual">
 <div class="pbar"><div class="inner"><div class="pstep" data-step="s1"><div class="pdot">1</div><span class="plabel">准备</span><div class="pline"></div></div><div class="pstep" data-step="s2"><div class="pdot">2</div><span class="plabel">建库</span><div class="pline"></div></div><div class="pstep" data-step="s3"><div class="pdot">3</div><span class="plabel">保存材料</span><div class="pline"></div></div><div class="pstep" data-step="s4"><div class="pdot">4</div><span class="plabel">编译画像</span><div class="pline"></div></div><div class="pstep" data-step="s5"><div class="pdot">5</div><span class="plabel">比条件</span><div class="pline"></div></div><div class="pstep" data-step="s6"><div class="pdot">6</div><span class="plabel">定时试跑</span><div class="pline"></div></div><div class="pstep" data-step="s7"><div class="pdot">7</div><span class="plabel">使用边界</span></div></div></div>
-<p class="reading-note">上方仅标记读到哪一步；是否完成，要以实际文件和运行记录核对。</p>
+<p class="reading-note">上方标记阅读位置。带下划线的词可悬停或轻点查看解释。</p>
 <nav aria-label="七步导航"><b>步骤：</b><a href="#s1">1 准备</a><a href="#s2">2 建库</a><a href="#s3">3 保存材料</a><a href="#s4">4 编译画像</a><a href="#s5">5 比条件写草稿</a><a href="#s6">6 定时试跑</a><a href="#s7">7 使用边界</a></nav>
 
 <section id="s1"><h2><span class="n">1</span>准备：先确认能用，再记住目录</h2>
@@ -189,8 +189,9 @@ pre{font-size:14px;line-height:1.65;overflow-wrap:anywhere}.chatcard pre{font-si
 <div id="sampleCards"><article class="chatcard"><h3>王先生 · 课堂虚构样例</h3><button class="copy" type="button" data-t="p0" data-sample="wang">复制这一位并保存</button><pre id="sample-wang" tabindex="0"></pre></article><article class="chatcard"><h3>李女士 · 课堂虚构样例</h3><button class="copy" type="button" data-t="p0" data-sample="li">复制这一位并保存</button><pre id="sample-li" tabindex="0"></pre></article><article class="chatcard"><h3>张总 · 课堂虚构样例</h3><button class="copy" type="button" data-t="p0" data-sample="zhang">复制这一位并保存</button><pre id="sample-zhang" tabindex="0"></pre></article></div>
 <div class="note amber">三个TXT与ZIP仍在 <code>samples/</code> 中。它们是虚构课堂原文，显示和复制均使用同一份内嵌数据。</div>
 </div>
-<aside class="legend" id="promptLegend" aria-labelledby="legendTitle"><h2 id="legendTitle">怎么看提示词里的标注</h2><p>每条提示词下方有短标签。鼠标移上去、键盘聚焦或手机轻点，都能看解释；按Escape收起。解释只供阅读，复制不会带上。</p><dl><dt>Skill／技能</dt><dd>反复使用的办事方法，例如按同一种规则整理原文和知识页。</dd><dt>专家角色／Persona</dt><dd>告诉AI按什么视角看问题，例如先比产品条件，再写沟通草稿。</dd><dt>工具</dt><dd>执行动作的能力，例如操作电脑、读网页、写文件。提到工具不等于已经调用。</dd><dt>输入、输出与限制</dt><dd>分别说明交给AI什么、要交回什么、哪里要停。我的口气来自我提供的表达样例。</dd></dl></aside>
+<aside class="legend" id="promptLegend" aria-labelledby="legendTitle"><h2 id="legendTitle">怎么看提示词里的标注</h2><p>鼠标移到带下划线的词或下方标签上，旁边会弹出解释框。也可以用键盘聚焦或在手机上轻点。按 Escape 收起。复制按钮只复制提示词正文。</p><dl><dt>Skill／技能</dt><dd>反复使用的办事方法，例如按同一种规则整理原文和知识页。</dd><dt>专家角色／Persona</dt><dd>告诉AI按什么视角看问题，例如先比产品条件，再写沟通草稿。</dd><dt>工具</dt><dd>执行动作的能力，例如操作电脑、读网页、写文件。提到工具不等于已经调用。</dd><dt>输入、输出与限制</dt><dd>分别说明交给AI什么、要交回什么、哪里要停。我的口气来自我提供的表达样例。</dd></dl></aside>
 </div><footer>私人银行客户经理培训 · 七步基础实操手册 · 客户资料为课堂虚构；实际任务、工具与产物逐项核对</footer>
+<div class="term-box" id="termBox" role="tooltip" hidden><strong></strong><span></span></div>
 <script id="sample-data" type="application/json">{"wang": {"name": "王先生", "filename": "客户微信_王先生.txt", "text": "# 客户微信_王先生（化名）· 私行 C3 级 · 2026-11\n\n> 教学示意，全部信息虚构脱敏。档案卡模拟客户经理从行内系统摘录、随聊天记录一并整理入档的客户背景信息。\n\n## 行内客户档案卡（系统摘录）\n\n- 客户编号：PB-2021-08***（脱敏）；客户经理：小陈\n- **私行等级**：C3 级（月日均金融资产 1000 万 ≤ AUM \u003c 2000 万）\n- **AUM**：约 1500 万元；本行金融资产：1400 万，他行约 100 万\n- **风险测评**：稳健型（问卷 27 分，21–30 分区间）；测评日期 2026-03-18，**有效期至 2027-03-18**\n- 资产结构：稳健类理财约 800 万（含\"乾元-私享\"500 万，2026-12 到期）、大额存单 400 万、活期及货币类 300 万\n- 家庭：已婚，配偶 45 岁（全职），一子 17 岁，计划明年赴美留学\n- 职业：某精密制造企业创始人兼董事长，企业年营收约 2 亿，公司股权为其主要资产来源\n- 沟通偏好：微信文字为主，工作繁忙，极少接电话；对\"本金安全\"高度敏感\n\n## 微信对话\n\n**【2026年11月3日 09:42】**\n\n**小陈**：王先生早上好，好久没联系了，最近公司忙吗？\n**王先生**：还行，年底冲业绩，忙得很。小陈，我那笔\"乾元-私享\"下个月 12 号到期了，最近看新闻说利率还要降，有没有稳一点的产品接上？\n**小陈**：有的。您这笔到期的是 500 万对吧？我按您上次测评的稳健型来匹配——您问卷是 27 分稳健型，还在有效期内，我就按这个等级选，不往上推风险。\n**王先生**：对，500 万。稳健就行，我这个钱是给儿子留的，本金不能有闪失。\n**小陈**：明白。除了这笔到期资金，您整体资金最近有别的安排吗？我看您账上还有一部分活期。\n**王先生**：活期那 300 万是随时要用的，别动。另外我儿子明年出国留学，要准备一笔美元，大概 50 万美元等值，这个可能要放到明年上半年。\n\n**【2026年11月5日 14:18】**\n\n**王先生**：小陈，我再补充几点。第一，我不太能接受本金波动，稳健第一；第二，期限最好半年以内，留学用钱时间卡得比较紧；第三，美元那部分希望能换个渠道安排，别都放人民币。\n**小陈**：都记下了：稳健优先、半年以内、美元单独安排。您对收益大概什么预期？我好把握尺度。\n**王先生**：我不贪高，年化能到 2% 出头、比活期强就行，关键是稳、随时能取。你们那个结构性存款我看新闻提到过，是保本的吗？\n**小陈**：结构性存款和普通存款不一样，收益是浮动的，有下限也有上限，我把官网的公开说明和风险提示发您，您看完我们再定。任何产品我都不会跟您说\"保本保收益\"。\n**王先生**：[语音]8\n**王先生**：行，你发我看。对了，我太太那边也有一点钱，是她自己管的，改天我也让她跟你聊聊。\n**小陈**：好的，随时欢迎。您把她拉个群或者约个时间都行。\n\n**【2026年11月6日 10:05】**\n\n**小陈**：王先生，资料整理好了发您。这是建行官网公开的产品说明，我标了链接和页面日期，具体要素以最新公告为准。\n**王先生**：[图片]\n**小陈**：这份是\"利得盈\"私行优享结构性存款的公告，期限和起点都写在里面。您重点看风险提示那一栏。\n**王先生**：收到，我看完回复你。还有个事——我儿子明年出去，留学那笔钱我想提前规划，你们有没有那种教育金或者美元的产品？\n**小陈**：有，我回头单独整理一份美元和跨境的配置思路给您，这个要跟您的留学时间点对上，我们慢慢捋。\n**王先生**：好，不急，你整理好发微信就行。我平时开会多，电话经常不方便接。\n**小陈**:明白，都微信沟通。我把方案和风险提示写清楚发您。\n"}, "li": {"name": "李女士", "filename": "客户微信_李女士.txt", "text": "# 客户微信_李女士（化名）· 私行 V 级 · 2026-11\n\n> 教学示意，全部信息虚构脱敏。档案卡模拟客户经理从行内系统摘录、随聊天记录一并整理入档的客户背景信息。\n\n## 行内客户档案卡（系统摘录）\n\n- 客户编号：PB-2019-03***（脱敏）；客户经理：小陈\n- **私行等级**：V 级（月日均金融资产 2000 万 ≤ AUM \u003c 5000 万）\n- **AUM**：约 3200 万元；本行金融资产 2800 万，他行及证券账户约 400 万\n- **风险测评**：稳健型（问卷 25 分，21–30 分区间）；测评日期 2026-06-02，**有效期至 2027-06-02**\n- 资产结构：中长期理财约 1200 万、家族信托 1000 万（已设立）、保险 300 万、现金及货币类 700 万\n- 家庭：已婚，配偶 48 岁（某企业股东），育有一女（2026-10 出生，即对话中\"小宝\"）；双方父母年事渐高，有赡养与传承需求\n- 职业：家族企业二代，持有多家公司股权，本人参与家族投资平台管理；非金融专业背景\n- 沟通偏好：微信文字为主，明确要求\"讲通俗一点\"，不喜欢专业术语堆砌\n\n## 微信对话\n\n**【2026年11月8日 20:15】**\n\n**李女士**：小陈在吗？我想了解一下财富传承，听说家族信托可以？\n**小陈**：在的李女士。家族信托确实是做财富传承常用的工具，您这次是想先做个了解，还是已经有比较明确的想法了？\n**李女士**：先了解吧。我们家情况有点复杂，我老公那边是家族企业，股权、房产这些都有，我怕以后分不清楚、家里人闹矛盾，想提前安排好。\n**小陈**：理解。那我先按您的情况说个大概——家族信托的核心是把资产所有权和受益权分开，可以按您的意愿约定分配条件，比如孩子到什么年龄、什么情况下能拿到多少。\n**李女士**：对了，我上次做的那个风险测评，你们系统里是稳健型对吧？我这个人对投资不太懂，也不想冒太大风险。\n**小陈**：对，您 6 月做的测评是稳健型，25 分，明年 6 月到期前都有效。我给您做的方案都会控制在这个等级以内，超出我不会推。您放心。\n**李女士**：好，那我就放心了。我对信托了解不多，你讲得通俗一点哈，别整那些听不懂的词。\n**小陈**：好的，我尽量用大白话，回头整理一份说明发您。\n\n**【2026年11月12日 21:30】**\n\n**李女士**：小陈，还有个大喜事——我们家小宝上个月出生了😊\n**小陈**：恭喜恭喜！小宝是男孩女孩？\n**李女士**：女儿，可可爱了。这样一来我更得分明白了，以后得为她多打算，教育金、保障这些都要考虑进去。刚才说的信托，也希望能覆盖到她。\n**小陈**：明白。那我把需求捋一下：一是给小宝准备教育金和长期保障，二是家族资产的传承安排，三是您提到的避免家庭纠纷。这三块我一起给您做个综合规划。\n**李女士**：对对，就这个意思。还有我爸妈那边，年纪大了，我也想给他们做点安排，医疗、养老这些。\n**小陈**：都记下了。父母那块可以单独看看保险和医疗资源，跟信托是两套逻辑，我分开给您讲清楚。\n**李女士**：好，你整理好发我微信就行，我平时电话不太方便，孩子小，经常没空接。\n**小陈**：没问题，都微信沟通。方案里我会把产品要素和风险提示都写清楚，您慢慢看，有任何疑问随时问我。\n\n**【2026年11月14日 15:40】**\n\n**小陈**：李女士，传承那块的初步思路我整理好了，先发您看看。里面我用图示讲了信托的结构，应该比较好懂。\n**李女士**：[图片]\n**李女士**：收到！我看完有问题再问你。对了这个方案里的产品，都是你们建行的吧？\n**小陈**：都是我行的产品和服务，家族信托是我行做财务顾问、建信信托做受托人。每个产品我都标了来源和说明，您要是不放心可以自己核对。\n**李女士**：那就好，我就认建行的。谢谢小陈！\n"}, "zhang": {"name": "张总", "filename": "客户微信_张总.txt", "text": "# 客户微信_张总（化名）· 私行 5000 万以上层级 · 2026-11\n\n> 教学示意，全部信息虚构脱敏。档案卡模拟客户经理从行内系统摘录、随聊天记录一并整理入档的客户背景信息。\n\n## 行内客户档案卡（系统摘录）\n\n- 客户编号：PB-2017-11***（脱敏）；客户经理：小陈\n- **私行等级**：5000 万以上（月日均金融资产 ≥ 5000 万，最高层级）\n- **AUM**：约 6800 万元；本行金融资产 5000 万，他行及证券、基金账户约 1800 万\n- **风险测评**：进取型（问卷 34 分，31–38 分区间）；测评日期 2026-08-20，**有效期至 2027-08-20**\n- 资产结构：权益类及基金约 3000 万、结构性存款及理财 1500 万、贵金属 500 万、企业股权及其他 1800 万\n- 家庭：已婚，配偶 42 岁，一子一女（均在国际学校就读）；家庭已设家族信托框架\n- 职业：科技公司创始人，企业已 Pre-IPO 轮，个人资产以股权为主，现金流波动较大\n- 沟通偏好：明确要求\"微信上说就行，别老打电话\"；关注流动性与贵金属，对市场热点敏感\n\n## 微信对话\n\n**【2026年11月15日 08:50】**\n\n**张总**：小陈，我有笔钱三个月内不用，想要流动性好、风险低一点的，有什么推荐？\n**小陈**：张总早。三个月的短期资金，稳健和流动性优先，我明白了。规模大概多少？\n**张总**：[语音]5\n**张总**：八百万左右，是公司账上暂时闲置的，三个月后要投一个新项目，不能锁死。\n**小陈**：明白，800 万、三个月、不能锁定。我看您风险测评是进取型，34 分，不过这笔钱您要的是稳和灵活，我按资金用途来配，不按测评上限推高风险，可以吧？\n**张总**：对，这笔求稳。我个人账户那部分另说，那部分可以激进点。\n\n**【2026年11月15日 09:12】**\n\n**张总**：对了，黄金最近涨得厉害，你们那个建行金还能买吗？我个人这块想配一点。\n**小陈**：建行金是我行的贵金属产品，我可以把公开资料和风险提示发您看看。不过黄金价格波动较大，您测评虽然是进取型，但贵金属我建议只做资产配置的一部分，别押太重。\n**张总**：嗯你发我看看。我平时工作忙，微信上说就行，别老打电话。\n**小陈**：好的，都微信沟通。我把流动性和黄金两块资料整理好发您，各自标了官网来源和日期。\n\n**【2026年11月15日 10:30】**\n\n**张总**：[图片]\n**张总**：这个是我基金经理发我的黄金分析，你帮我看看靠不靠谱？\n**小陈**：我看了，这是一篇市场观点，可以作为参考，但它不代表我行立场，也不构成投资建议。我给您配的我行官方风险提示一起看，两边对照。\n**张总**：行。那八百万那个短期方案，收益率大概多少？\n**小陈**：私行优享的结构性存款，官网公告的收益率区间我发您，有下限有上限，是浮动的不保证。具体以最新公告为准，我把链接标给您。\n**张总**：收到。还有——我两个孩子在读国际学校，明年大儿子也要出去，教育金这块你们有没有长期一点的方案？这块我可以接受锁五年。\n**小陈**：有，我单独整理一份长期教育金和美元配置的思路给您，这笔可以按您说的五年期限来配，跟短期那笔分开算。\n**张总**：好，一起发我。\n**小陈**：没问题。另外提一句，您上次测评是今年 8 月做的，明年 8 月到期，到时候如果风险偏好或资金情况变了，我提醒您重做一次。\n**张总**：[转账]2000:辛苦费\n**小陈**：张总这可使不得，费用我不能收，您心意我领了。\n**张总**：哈哈行吧。资料发我微信就行。\n"}}</script><script>
 (() => {
   'use strict';
@@ -318,91 +319,287 @@ ${voice}`,
   window.addEventListener('resize',showReading);
   render();showReading();
 })();
-</script><script>/* JS · labels, hover/focus/tap help, and text-only keyword spans. */
+</script><script>
 (() => {
-  const types={
-    skill:['Skill','可反复使用的办事方法。例如按同一规则整理原文与知识页。'],
-    role:['专家角色','告诉AI按什么视角看问题。这里安排工作视角，不证明已调了某个专家。'],
-    tool:['工具','实际执行动作的能力，例如读文件、打开微信或创建任务。是否可用看当前环境。'],
-    input:['输入','这次交给AI的材料，例如名单和指定日期的聊天。'],
-    output:['输出','这步要交回什么，例如独立TXT、比较表或任务记录。'],
-    limit:['限制','说明哪里要停。例如只读不发送，没依据就留待核。'],
-    voice:['我的口气','参考经理自己的几条消息学称呼、句长和语气，不照搬客户事实。']
+  // The floating box lives outside every prompt. Inline spans retain the original text.
+  const glossary = {
+    agent: ['Agent', '能接任务、读材料并使用工具的 AI 助手。每一步做到哪，要看它实际交回的结果。'],
+    prompt: ['提示词|Prompt', '你发给 AI 的任务说明，写清楚它看什么、做什么、交回什么。'],
+    context: ['本轮客户|本次目录|本轮名单', '只用这次明确选中的客户和目录。例如改成 C002 后，后续分析就跟着改。'],
+    workspace: ['工作空间', 'WorkBuddy 这次从哪个文件夹开始读写文件。例如先选课堂目录，再让它保存资料。'],
+    root: ['知识库完整路径|知识库根目录|完整路径|绝对路径|完整目录|根目录', '能直接找到文件夹的完整地址。例如 C:/课堂/私行知识库。新任务也要选对这个目录。'],
+    permission: ['权限确认|权限弹窗|只读权限', '工具访问文件或执行动作时可能需要确认。比如先看它要读哪个目录，再决定是否允许。'],
+    skill: ['Skill|技能', '可以重复用的一套做事方法。例如每次整理资料都按同一规则注明出处。', 'skill'],
+    market: ['技能市场|安装确认', '查找和安装 Skill 的入口。先核对名称、作者和来源，再按界面确认。', 'skill'],
+    kit: ['llm-wiki-kit', '手册请你检查的建库 Skill。它可用于整理原文和知识页，找不到时可沿用手册里的普通任务做法。', 'skill'],
+    library: ['LLM Wiki|资料知识库|知识库|Wiki画像|Wiki|wiki/|知识页', '把原文和整理后的知识页分开保存，让 AI 能沿着目录和出处查资料。'],
+    raw: ['raw/', '保存原始材料的文件夹。例如聊天 TXT 和产品说明书。重新整理知识页时保留这些原件。'],
+    rules: ['AGENTS.md', '写给 Agent 的工作规则文件。例如告诉它保留原文、标明来源、遇到冲突先待核。'],
+    index: ['index.md|索引', '知识库的目录或导航页，帮你找到某位客户或某份产品资料。'],
+    log: ['log.md|日志', '记录每次整理的结果，例如更新了哪个文件，哪些资料没读到。'],
+    txt: ['TXT', '纯文本文件。用记事本或普通文本编辑器就能打开。'],
+    pdf: ['PDF', '适合保留原版式的文件。核产品条款时可以记下文件名和页码，方便回查。'],
+    zip: ['ZIP', '把多个文件装进一个压缩包。解压就能分别打开里面的 TXT。'],
+    markdown: ['客户画像汇总.md', '汇总客户画像的 Markdown 文本文件，用普通文本编辑器就能打开。'],
+    archive: ['微信归档|归档', '把要回查的聊天按客户保存成文件，留下日期和说话人。'],
+    desktop: ['电脑操作|桌面微信|电脑微信', '让 Agent 用电脑上的界面找资料。比如在电脑微信定位指定会话。', 'tool'],
+    contact: ['备注名|显示名|会话标题', '在电脑微信里用来认出对话的名字。遇到同名时，先核对是哪一个窗口。'],
+    anonymous: ['匿名ID|匿名编号|匿名称谓', '用 C001 这样的编号替代客户姓名，方便把不同客户的文件分开。'],
+    redact: ['脱敏|识别信息', '按批准的规则处理姓名、账号等能认出个人的信息。例如用编号替代姓名。'],
+    readonly: ['只读', '查看已有内容。例如读取指定聊天，同时保留原聊天和消息状态。'],
+    web: ['网页读取|工具', '让 Agent 做一个实际动作，例如打开公开网页、查看文件或保存结果。', 'tool'],
+    url: ['URL', '网页的完整链接。保存它，日后就能回到资料原出处。'],
+    source: ['来源表|来源日期|取用日|出处', '记清信息来自哪个文件、哪一天、哪一页。例如在比较表里标出说明书第 4 页。'],
+    snapshot: ['课堂快照|快照', '保留某一天看到的资料，用于课堂回查。要了解今天的情况，再查当前公告。'],
+    leaflet: ['正式说明书|产品说明书|说明书', '列出产品条件的文件，通常能查到募集、期限、费用和本金收益约定。'],
+    riskDisclosure: ['风险揭示', '说明产品可能遇到哪些风险，以及这些风险在什么情况下会影响客户。'],
+    publisher: ['发行机构|发行方', '设计并发行产品的机构。对照正式说明书就能查谁发行了这一期。'],
+    channel: ['销售渠道', '客户可以通过哪些地方了解或办理产品，例如银行 App 或网点。'],
+    eligible: ['适用客户|购买资格', '产品允许哪些客户办理。看清适用范围，再谈是不是候选。'],
+    compile: ['编译画像|编译入库|统一编译|编译', '把保存好的原文整理成可查询的客户页、出处和索引。例如把一条新聊天加进对应客户页。'],
+    portrait: ['客户画像汇总|客户画像|画像页|画像', '把某位客户已知的需求、偏好和待核问题放在一页里，并注明每项来自哪里。'],
+    incremental: ['增量更新|新增或改动|新增材料|增量', '只处理这次新增或改过的资料。例如有一条新聊天，就更新它涉及的客户页。'],
+    dedupe: ['去重', '同一份材料已经处理过，再运行时跳过去，避免把一条消息当成两件事。'],
+    facts: ['客户档案卡|档案事实', '来自客户档案的已记录信息。例如样例中的测评日期。'],
+    quote: ['客户原话', '客户在聊天里亲口说的内容。摘录时保留原句、说话人和日期。'],
+    inference: ['有限分析', '根据已有资料得出的判断。例如客户说下个月要用钱，可以推断要优先问到账时间。'],
+    unsure: ['待核|待补问|待确认|未知项', '资料还不足以确认。例如不知道实际到账日，就列出来请经理核对。'],
+    conflicts: ['冲突', '两条记录说法对不上。例如客户前后给了两个用款日，先留住两条并核实。'],
+    persona: ['专家角色|Persona|角色视角', '让 AI 按指定角色的视角想问题。例如先从金融角度核条件，再从沟通角度写草稿。', 'role'],
+    finance: ['金融专家视角', '先对时间、资格和风险条件。例如现有资金在募集截止之后才能用，就先排除这一期。', 'role'],
+    marketing: ['营销专家视角', '把已核对的条件写成客户听得懂的消息。例如先说结论，再解释原因。', 'role'],
+    voice: ['我的表达样例|经理表达样例|语言风格|我的口气', '参考经理自己的几条消息，学习称呼、句长和语气。具体事实仍从本客户材料里核对。'],
+    draft: ['经理审阅草稿|审阅草稿|话术', '先写给经理看的一版客户消息，经理核对后决定如何修改和使用。'],
+    risk: ['正式风险匹配|正式风险测评|正式测评|风险测评|风险等级', '客户风险承受情况依据正式测评记录，选品时再与产品的风险条件核对。'],
+    liquidity: ['流动性', '需要用钱时，能不能及时拿到钱。例如可申请赎回的日子和真正到账的日子可能不同。'],
+    subscription: ['募集期|募集截止|募集起止|认购截止|认购', '这期产品接受认购的时间。比如周日截止，周一到账的钱就赶不上这一期。'],
+    interest: ['起息到期|起息', '起息指产品开始按约定计算收益的时间，到期指这期结束。具体日期看本期说明书。'],
+    maturity: ['到期', '这期产品按约定结束的日子。资金什么时候能用，还要核对到账规则。'],
+    holding: ['持有期', '资金投进去后要持有多久，常用于判断什么时候可以申请赎回。'],
+    withdraw: ['提前支取|提前取出', '在存款原约定结束前取款。是否允许、怎样计息，要看对应条款。'],
+    redeem: ['赎回', '把持有的产品份额按规则换回资金。申请日、确认日和到账日可能不同。'],
+    funds: ['到账', '钱实际进入可用账户的时间。和提交赎回或产品到期的时间分别核对。'],
+    float: ['浮动收益', '收益会随条款约定的条件变化。课堂上按说明书核对怎么算、结果可能怎样。'],
+    principal: ['本金', '最初投进去的金额。是否有保障以及适用条件，要看本期合同。'],
+    rollover: ['资金接续|到期接续|接续', '上一笔钱到期后再安排下一笔。要比较旧资金到账日和新产品募集截止日。'],
+    candidate: ['无候选|候选产品|候选', '按现有证据筛出的可进一步了解选项。条件对不上的产品先排除，可以一只都不选。'],
+    aum: ['AUM', '管理资产规模的英文缩写。这里用于描述样例客户的金融资产，具体统计范围看采用的口径。'],
+    dailyAverage: ['月日均金融资产', '把一个月内每天统计的金融资产加起来，再按天数求平均。'],
+    allocation: ['资产配置|资产结构|组合需要', '看资金分布在哪些资产里，以及各笔钱用来做什么。例如备用钱和长期资金的安排可以不同。'],
+    structured: ['结构性存款', '收益和条款约定的指标挂钩的一类存款。看本期说明书核对收益怎么算、能不能提前支取。'],
+    certificate: ['大额存单', '银行发行的一类存款凭证。期限、利率和支取条件看具体产品。'],
+    trust: ['家族信托', '按约定由受托人管理财产的一种安排。例如按约定时间或条件向家人分配。'],
+    annual: ['年化收益率|年化', '把收益率换算成年尺度，便于比较。持有几个月的实际收益还要按条款计算。'],
+    ownership: ['股权', '对一家公司的所有权份额。样例里用它说明客户的一部分财富来自企业。'],
+    preIpo: ['Pre-IPO', '企业计划上市前的融资阶段。样例用它描述企业所处阶段。'],
+    cashFlow: ['现金流', '一段时间内实际流入、流出的现金。比如看三个月内有哪些款需要支付。'],
+    metal: ['贵金属', '黄金等金属资产。在样例里，张总想了解的是黄金相关产品。'],
+    schedule: ['本地定时任务|定时任务|定时试跑|调度', '把任务和执行时间保存下来。例如设为每天 08:30 整理新增资料。', 'tool'],
+    cloud: ['云端沙箱|云端任务', '任务在远程环境中运行。例如电脑关机后仍能跑云端任务，需要另行准备它能访问的输入。', 'tool'],
+    connector: ['连接器', '在授权范围内把 Agent 接到另一个应用或资料源。例如读取已关联的资料。', 'tool'],
+    pause: ['暂停状态|已暂停|保持暂停|暂停', '定时计划暂时停着。课堂可以手动试跑一次，接着检查任务仍显示暂停。'],
+    run: ['立即运行|手动试跑|试跑', '现在做一次，检查有无产物和报错。之后是否按点触发，还要看计划的运行记录。'],
+    next: ['下次执行时间|时间规则', '时间规则是你设置的频率。启用后，检查系统显示的下一次实际运行时间。'],
+    receipt: ['运行记录|执行记录', '每次运行的回执，比如几点开始、成功还是失败、生成的文件在哪里。']
   };
-  const specs={
-    p1:[['skill','llm-wiki-kit'],['tool','目录与技能市场'],['output','路径、规则与安装状态']],
-    p0:[['tool','保存本地文件'],['input','所选虚构样例'],['output','逐位原文TXT']],
-    p2:[['tool','电脑微信'],['input','确认名单和30天文字'],['limit','只读不发、身份不明先停']],
-    p2b:[['tool','网页读取'],['input','官方网页与PDF'],['output','原文、日期和缺失项']],
-    p3:[['skill','可用Skill或普通整理'],['input','本轮新增材料'],['output','画像、来源与日志']],
-    p4:[['role','金融→营销'],['voice','表达样例'],['output','比较表和经理审阅草稿']],
-    p6:[['tool','本地定时任务'],['skill','按已确认规则整理'],['output','配置与试跑记录'],['limit','先暂停、核对后启用']],
-    w_all:[['input','三段虚构样例'],['output','逐位保存，不重复编译']]
+  const labels = {
+    p1: [['skill', 'Skill · llm-wiki-kit', 'kit'], ['tool', '工具 · 目录与技能市场', 'market'], ['output', '输出 · 路径、规则与安装状态']],
+    p0: [['tool', '工具 · 保存本地文件', 'raw'], ['input', '输入 · 所选虚构样例'], ['output', '输出 · 逐位原文 TXT', 'txt']],
+    p2: [['tool', '工具 · 电脑微信', 'desktop'], ['input', '输入 · 确认名单和 30 天文字'], ['limit', '限制 · 只读不发、身份不明先停', 'readonly']],
+    p2b: [['tool', '工具 · 网页读取', 'web'], ['input', '输入 · 官方网页与 PDF', 'pdf'], ['output', '输出 · 原文、日期和缺失项', 'source']],
+    p3: [['skill', 'Skill · 可用技能或普通整理', 'kit'], ['input', '输入 · 本轮新增材料', 'incremental'], ['output', '输出 · 画像、来源与日志', 'portrait']],
+    p4: [['role', '专家角色 · 金融 → 营销', 'persona'], ['voice', '我的口气 · 表达样例', 'voice'], ['output', '输出 · 比较表和经理审阅草稿', 'draft']],
+    p6: [['tool', '工具 · 本地定时任务', 'schedule'], ['skill', 'Skill · 按已确认规则整理', 'rules'], ['output', '输出 · 配置与试跑记录', 'receipt'], ['limit', '限制 · 先暂停、核对后启用', 'pause']],
+    w_all: [['input', '输入 · 三段虚构样例'], ['output', '输出 · 逐位保存的 TXT', 'txt']]
   };
-  const summaries={
-    p1:'先准备方法和目录，再核对真实路径与Skill状态。',
-    p0:'这条只保存所选原文，画像统一在第4步编译。',
-    p2:'先确认电脑微信和会话，再逐位保存；不向客户发消息。',
-    p2b:'只记录真正读到的条款，入口、介绍与当期合同分开。',
-    p3:'把本轮已保存材料编译一次，保留每项判断的出处。',
-    p4:'先比条件，再按我的口气写；没有候选也能完成。',
-    p6:'任务建好、试跑成功、未来按时执行分别检查。',
-    w_all:'与第3步样例按钮共用同一份原文，选一个入口即可。'
+  const labelHelp = {
+    input: '这次交给 AI 的材料。例如一位客户的聊天记录。',
+    output: '做完要交回的结果。例如一份文件和它的保存地址。',
+    limit: '本次操作的范围和停手条件。'
   };
-  const keywords={
-    p1:[['skill','llm-wiki-kit'],['tool','文件操作']],
-    p0:[['tool','写到']],
-    p2:[['tool','电脑操作'],['tool','桌面微信']],
-    p2b:[['tool','网页读取']],
-    p3:[['skill','llm-wiki-kit']],
-    p4:[['role','金融专家视角'],['role','营销专家视角'],['voice','我的口气']],
-    p6:[['tool','定时任务'],['skill','Skill']]
-  };
-  function reset(block){
-    block.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed','false'));
-    block.querySelector('.teach-note').textContent=summaries[block.dataset.prompt];
+  const aliases = new Map();
+  for (const [key, [words]] of Object.entries(glossary)) {
+    for (const word of words.split('|')) aliases.set(word.toLowerCase(), key);
   }
-  function explain(id,kind,caption){
-    const block=document.getElementById('teach-'+id);if(!block)return;
-    block.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.kind===kind)));
-    block.querySelector('.teach-note').textContent=caption+'：'+types[kind][1];
-  }
-  function mark(pre,id){
-    if(pre.querySelector('.teach-keyword'))return;
-    for(const [kind,word] of keywords[id]||[]){
-      const walker=document.createTreeWalker(pre,NodeFilter.SHOW_TEXT);let node;
-      while(node=walker.nextNode()){
-        if(node.parentElement.closest('.teach-keyword'))continue;
-        const at=node.data.indexOf(word);if(at<0)continue;
-        const span=document.createElement('span');span.className='teach-keyword';span.dataset.kind=kind;span.textContent=word;span.tabIndex=0;span.setAttribute('aria-describedby','teach-note-'+id);
-        node.replaceWith(document.createTextNode(node.data.slice(0,at)),span,document.createTextNode(node.data.slice(at+word.length)));break;
-      }
+  const escapeRegex = word => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const terms = [...aliases.keys()].sort((a, b) => b.length - a.length).map(word => {
+    const start = /^[a-z]/.test(word) ? '(?<![a-z0-9_-])' : '';
+    const end = /[a-z]$/.test(word) ? '(?![a-z0-9_-])' : '';
+    return start + escapeRegex(word) + end;
+  });
+  const matcher = new RegExp('https?://[^\\s]+|' + terms.join('|'), 'gi');
+
+  function markTerms(root, excludePre = false) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    const skip = 'a, button, label, textarea, select, summary, .teach-keyword, .teach-labels' + (excludePre ? ', pre' : '');
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (!node.parentElement.closest(skip)) textNodes.push(node);
     }
-  }
-  function attach(){
-    for(const [id,tags] of Object.entries(specs)){
-      const pre=document.getElementById(id);if(!pre)continue;
-      if(!document.getElementById('teach-'+id)){
-        const block=document.createElement('div');block.id='teach-'+id;block.className='teach-labels';block.dataset.prompt=id;
-        const buttons=document.createElement('div');buttons.className='teach-buttons';buttons.setAttribute('role','group');buttons.setAttribute('aria-label','提示词教学标注');
-        const note=document.createElement('p');note.id='teach-note-'+id;note.className='teach-note';note.setAttribute('role','status');
-        for(const [kind,caption] of tags){
-          const button=document.createElement('button');button.type='button';button.className='teach-tag';button.dataset.kind=kind;button.textContent=types[kind][0]+' · '+caption;button.setAttribute('aria-pressed','false');button.setAttribute('aria-controls',note.id);
-          button.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse')explain(id,kind,caption);});
-          button.addEventListener('focus',()=>explain(id,kind,caption));button.addEventListener('click',()=>explain(id,kind,caption));buttons.append(button);
+    const focusable = new Set();
+    for (const node of textNodes) {
+      const fragment = document.createDocumentFragment();
+      let offset = 0;
+      for (const match of node.data.matchAll(matcher)) {
+        const word = match[0];
+        const key = aliases.get(word.toLowerCase());
+        if (!key) continue;
+        fragment.append(node.data.slice(offset, match.index));
+        const span = document.createElement('span');
+        span.className = 'teach-keyword';
+        span.dataset.term = key;
+        span.dataset.kind = glossary[key][2] || 'term';
+        span.textContent = word;
+        if (!focusable.has(key)) {
+          span.tabIndex = 0;
+          span.setAttribute('role', 'button');
+          focusable.add(key);
         }
-        block.append(buttons,note);
-        const holder=pre.closest('details')||pre;holder.after(block);reset(block);
-        pre.addEventListener('pointerover',event=>{const word=event.target.closest('.teach-keyword');if(word&&event.pointerType==='mouse')explain(id,word.dataset.kind,word.textContent);});
-        pre.addEventListener('focusin',event=>{const word=event.target.closest('.teach-keyword');if(word)explain(id,word.dataset.kind,word.textContent);});
-        pre.addEventListener('click',event=>{const word=event.target.closest('.teach-keyword');if(word)explain(id,word.dataset.kind,word.textContent);});
+        fragment.append(span);
+        offset = match.index + word.length;
       }
-      mark(pre,id);
+      if (offset) node.replaceWith(fragment, document.createTextNode(node.data.slice(offset)));
     }
   }
-  window.addEventListener('manual:prompts',attach);
-  window.addEventListener('keydown',event=>{if(event.key==='Escape')document.querySelectorAll('.teach-labels').forEach(reset);});
-  document.addEventListener('click',event=>{if(!event.target.closest('.teach-labels,.teach-keyword'))document.querySelectorAll('.teach-labels').forEach(reset);});
-  attach();
+
+  for (const [id, tags] of Object.entries(labels)) {
+    const pre = document.getElementById(id);
+    const group = document.createElement('div');
+    group.className = 'teach-labels teach-buttons';
+    group.setAttribute('role', 'group');
+    group.setAttribute('aria-label', '提示词教学标注');
+    for (const [kind, caption, term] of tags) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'teach-tag';
+      button.dataset.kind = kind;
+      button.dataset.term = term || kind;
+      button.textContent = caption;
+      group.append(button);
+    }
+    (pre.closest('details') || pre).after(group);
+  }
+
+  const box = document.getElementById('termBox');
+  const boxTitle = box.querySelector('strong');
+  const boxText = box.querySelector('span');
+  let anchor = null;
+  let openedBy;
+  let closeTimer;
+  let focusFrame;
+  let pointerPosition;
+  let dismissedAt;
+  const trigger = target => target instanceof Element ? target.closest('[data-term]') : null;
+
+  function closeBox() {
+    clearTimeout(closeTimer);
+    cancelAnimationFrame(focusFrame);
+    anchor?.removeAttribute('aria-describedby');
+    anchor = null;
+    openedBy = null;
+    box.hidden = true;
+  }
+
+  function placeBox() {
+    if (!anchor) return;
+    if (!anchor.isConnected || !anchor.getClientRects().length) return closeBox();
+    const rect = anchor.getBoundingClientRect();
+    const width = document.documentElement.clientWidth;
+    const height = document.documentElement.clientHeight;
+    if (rect.bottom <= 0 || rect.top >= height || rect.right <= 0 || rect.left >= width) {
+      // Keyboard focus can start a smooth scroll before the word is visible.
+      if (openedBy === 'focus' && document.activeElement === anchor) box.hidden = true;
+      else closeBox();
+      return;
+    }
+    box.hidden = false;
+    const gap = 6;
+    const below = rect.bottom + gap;
+    const above = rect.top - box.offsetHeight - gap;
+    const top = below + box.offsetHeight <= height - 8 ? below : Math.max(8, above);
+    box.style.left = Math.max(8, Math.min(rect.left, width - box.offsetWidth - 8)) + 'px';
+    box.style.top = top + 'px';
+  }
+
+  function openBox(next, method) {
+    clearTimeout(closeTimer);
+    if (anchor !== next) anchor?.removeAttribute('aria-describedby');
+    anchor = next;
+    openedBy = method;
+    boxTitle.textContent = next.textContent;
+    boxText.textContent = glossary[next.dataset.term]?.[1] || labelHelp[next.dataset.term];
+    anchor.setAttribute('aria-describedby', box.id);
+    placeBox();
+  }
+
+  document.addEventListener('pointerover', event => {
+    if (event.pointerType !== 'mouse') return;
+    const position = `${event.clientX},${event.clientY}`;
+    const moved = position !== pointerPosition;
+    pointerPosition = position;
+    if (box.contains(event.target)) return clearTimeout(closeTimer);
+    if (position === dismissedAt) return;
+    if (openedBy === 'focus' && !moved) return;
+    const next = trigger(event.target);
+    if (next && next !== trigger(event.relatedTarget) && next !== anchor) openBox(next, 'pointer');
+  });
+  document.addEventListener('pointermove', event => {
+    if (event.pointerType !== 'mouse') return;
+    pointerPosition = `${event.clientX},${event.clientY}`;
+    if (pointerPosition !== dismissedAt) dismissedAt = null;
+  });
+  document.addEventListener('pointerout', event => {
+    if (openedBy !== 'pointer' || event.pointerType !== 'mouse') return;
+    if (trigger(event.target) === anchor || box.contains(event.target)) {
+      closeTimer = setTimeout(() => {
+        if (!anchor?.matches(':hover') && !box.matches(':hover')) closeBox();
+      }, 170);
+    }
+  });
+  document.addEventListener('focusin', event => {
+    const next = trigger(event.target);
+    if (next) {
+      cancelAnimationFrame(focusFrame);
+      // Focusing an off-screen word can also scroll it into view.
+      focusFrame = requestAnimationFrame(() => {
+        if (document.activeElement === next && !(anchor === next && openedBy === 'click')) openBox(next, 'focus');
+      });
+    }
+    else if (openedBy === 'focus') closeBox();
+  });
+  document.addEventListener('focusout', event => {
+    if (event.target === anchor && openedBy === 'focus') closeBox();
+  });
+  document.addEventListener('click', event => {
+    if (box.contains(event.target)) return;
+    const next = trigger(event.target);
+    if (!next || (next === anchor && openedBy === 'click')) closeBox();
+    else openBox(next, 'click');
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      dismissedAt = pointerPosition;
+      closeBox();
+      return;
+    }
+    const next = trigger(event.target);
+    if (next?.classList.contains('teach-keyword') && (event.key === 'Enter' || event.key === ' ')) {
+      event.preventDefault();
+      next.click();
+    }
+  });
+  window.addEventListener('resize', placeBox);
+  window.addEventListener('scroll', placeBox, {capture: true, passive: true});
+
+  function markPrompts() {
+    if (anchor?.closest('pre')) closeBox();
+    for (const id of Object.keys(labels)) markTerms(document.getElementById(id));
+  }
+  document.querySelectorAll('header, #panel-manual > section, #panel-chat > .note, #promptLegend')
+    .forEach(root => markTerms(root, true));
+  document.querySelectorAll('#sampleCards pre').forEach(pre => markTerms(pre));
+  window.addEventListener('manual:prompts', markPrompts);
+  markPrompts();
 })();
 </script></body></html>
