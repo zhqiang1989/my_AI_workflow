@@ -1,14 +1,14 @@
 # 课堂实操材料
 
-第 51 页 PPT 使用的[原始简报地址](https://raw.githubusercontent.com/zhqiang1989/my_AI_workflow/master/materials/brief.md)可以直接交给 WorkBuddy。简报自带客户 A、B 的对话要点、四步流程和交付要求。
+第 51 页 PPT 使用的[简报地址](https://raw.githubusercontent.com/zhqiang1989/my_AI_workflow/master/materials/brief.md)可以直接交给 WorkBuddy。简报含王先生、李女士、张总的完整档案卡和长微信记录，以及四步流程和交付要求。
 
 ## 两个练习入口
 
 | 材料 | 怎么用 |
 | --- | --- |
-| [brief.md](https://raw.githubusercontent.com/zhqiang1989/my_AI_workflow/master/materials/brief.md) | PPT 原练习。读客户 A/B 投教简报，做成解释客户沟通流程的 HTML。 |
-| [example-workflow.md](https://raw.githubusercontent.com/zhqiang1989/my_AI_workflow/master/materials/example-workflow.md) | 三位文学客户的练习指令。在 WorkBuddy 新任务里发「请读取并执行这个文件」并附链接。 |
-| [customer-chats.md](https://raw.githubusercontent.com/zhqiang1989/my_AI_workflow/master/materials/customer-chats.md) | 林黛玉、孙悟空和唐僧的 30 条完整课堂微信记录，含消息编号。 |
+| [brief.md](https://raw.githubusercontent.com/zhqiang1989/my_AI_workflow/master/materials/brief.md) | PPT 练习。读三位客户的长版记录，做成解释客户沟通流程的 HTML。 |
+| [example-workflow.md](https://raw.githubusercontent.com/zhqiang1989/my_AI_workflow/master/materials/example-workflow.md) | 用同一批客户练习入库、画像和草稿。在 WorkBuddy 新任务里发「请读取并执行这个文件」并附链接。 |
+| [customer-chats.md](https://raw.githubusercontent.com/zhqiang1989/my_AI_workflow/master/materials/customer-chats.md) | 王先生、李女士和张总的课堂档案和 63 条完整微信记录。 |
 | [product-sources.md](https://raw.githubusercontent.com/zhqiang1989/my_AI_workflow/master/materials/product-sources.md) | 两个练习各自适用的公开资料和说明书核对要点。 |
 
 ## 页面和配套工具
