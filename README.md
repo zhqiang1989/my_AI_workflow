@@ -4,6 +4,8 @@
 
 [在线打开实操手册](https://zhqiang1989.github.io/my_AI_workflow/)
 
+[PPT 原简报](https://raw.githubusercontent.com/zhqiang1989/my_AI_workflow/master/materials/brief.md) · [公开课堂材料和可复制指令](materials/)
+
 ## 文件说明
 
 | 文件 | 用途 |

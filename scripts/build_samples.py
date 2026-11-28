@@ -9,6 +9,7 @@ from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 SAMPLES = ROOT / "samples"
+MATERIALS = ROOT / "materials"
 MANUAL = ROOT / "私行客户经理_WorkBuddy实操手册.html"
 
 
@@ -88,7 +89,13 @@ def build():
         "保留原文、编号、日期和说话人，每份核对 10 条。本步只归档原文，画像在第 4 步统一生成。\n"
         "在现有索引和日志中登记，回报文件位置和条数。正式风险测评未提供。"
     )
-    bundle = introduction + "\n\n" + "\n\n".join(f"【{name}】\n{plain.strip()}" for name, plain in files.items())
+    records = "\n\n".join(f"【{name}】\n{plain.strip()}" for name, plain in files.items())
+    bundle = introduction + "\n\n" + records
+    (MATERIALS / "customer-chats.md").write_text(
+        "# 三位课堂客户的模拟微信原文\n\n"
+        "按下列文件名分开保存。全部为课堂虚构，每位各 10 条，正式风险测评未提供。\n\n"
+        + records + "\n", encoding="utf-8", newline="\n"
+    )
     html = MANUAL.read_text(encoding="utf-8")
     for marker, prompt_id in (("sample-import", "p0"), ("sample-copy-all", "w_all")):
         html = replace_block(html, marker, f'  <pre id="{prompt_id}">{escape(bundle)}</pre>')
