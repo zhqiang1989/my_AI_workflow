@@ -2,6 +2,8 @@
 
 面向零基础学员的 WorkBuddy 实操课件。先用虚构样例练习建库、整理资料、编译画像和准备沟通草稿。
 
+[在线打开实操手册](https://zhqiang1989.github.io/my_AI_workflow/)
+
 ## 文件说明
 
 | 文件 | 用途 |
